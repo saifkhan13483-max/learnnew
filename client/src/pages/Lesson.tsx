@@ -57,8 +57,11 @@ export default function Lesson() {
       <div className="max-w-5xl mx-auto px-6 py-8 md:py-12">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm mb-8" data-testid="breadcrumb">
-          <Link href="/">
-            <a className="text-muted-foreground hover:text-foreground transition-colors font-medium">Home</a>
+          <Link 
+            href="/" 
+            className="text-muted-foreground hover:text-foreground transition-colors font-medium cursor-pointer"
+          >
+            Home
           </Link>
           <ChevronRight className="w-4 h-4 text-muted-foreground" />
           <span className="text-muted-foreground">Module {module.number}</span>
