@@ -11,7 +11,7 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, CheckCircle2, Circle, GraduationCap, Home } from "lucide-react";
+import { ChevronDown, CheckCircle2, Circle, GraduationCap, Home, Award } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { courseModules } from "@shared/courseData";
 import { useState, useEffect } from "react";
@@ -53,14 +53,27 @@ export default function CourseSidebar() {
     return location === `/module/${moduleId}/lesson/${lessonId}`;
   };
 
+  const getModuleProgress = (moduleId: string) => {
+    const module = courseModules.find(m => m.id === moduleId);
+    if (!module) return 0;
+    
+    const completedCount = module.lessons.filter(l => completedLessons.has(l.id)).length;
+    return Math.round((completedCount / module.lessons.length) * 100);
+  };
+
+  const totalLessons = courseModules.reduce((sum, m) => sum + m.lessons.length, 0);
+  const overallProgress = Math.round((completedLessons.size / totalLessons) * 100);
+
   return (
     <Sidebar data-testid="sidebar-course">
-      <SidebarHeader className="p-6">
+      <SidebarHeader className="p-6 border-b">
         <Link href="/">
-          <div className="flex items-center gap-2 hover-elevate p-2 rounded-lg cursor-pointer" data-testid="link-home">
-            <GraduationCap className="w-6 h-6 text-primary" />
-            <div>
-              <h2 className="font-semibold text-sm">AI No-Code Course</h2>
+          <div className="flex items-center gap-3 hover-elevate p-3 rounded-xl cursor-pointer" data-testid="link-home">
+            <div className="p-2 bg-primary/10 rounded-lg">
+              <GraduationCap className="w-5 h-5 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h2 className="font-bold text-sm truncate">AI No-Code Course</h2>
               <p className="text-xs text-muted-foreground">Web Development</p>
             </div>
           </div>
@@ -69,10 +82,6 @@ export default function CourseSidebar() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="flex items-center gap-2 mb-2">
-            <Home className="w-4 h-4" />
-            Navigation
-          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -88,83 +97,98 @@ export default function CourseSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Course Modules</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xs font-semibold uppercase tracking-wider">
+            Course Modules
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {courseModules.map((module) => (
-                <Collapsible
-                  key={module.id}
-                  open={openModules.has(module.id)}
-                  onOpenChange={() => toggleModule(module.id)}
-                >
-                  <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton 
-                        className="w-full font-medium"
-                        data-testid={`button-toggle-module-${module.id}`}
-                      >
-                        <ChevronDown 
-                          className={`w-4 h-4 transition-transform ${
-                            openModules.has(module.id) ? "rotate-0" : "-rotate-90"
-                          }`}
-                        />
-                        <span className="flex-1 text-left">
-                          {module.number}. {module.title}
-                        </span>
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <SidebarMenu className="ml-4 mt-1 space-y-0.5">
-                        {module.lessons.map((lesson) => {
-                          const isActive = isLessonActive(module.id, lesson.id);
-                          const isCompleted = completedLessons.has(lesson.id);
-                          
-                          return (
-                            <SidebarMenuItem key={lesson.id}>
-                              <SidebarMenuButton 
-                                asChild 
-                                isActive={isActive}
-                                className="text-sm"
-                                data-testid={`link-lesson-${lesson.id}`}
-                              >
-                                <Link href={`/module/${module.id}/lesson/${lesson.id}`}>
-                                  {isCompleted ? (
-                                    <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
-                                  ) : (
-                                    <Circle className="w-3.5 h-3.5" />
-                                  )}
-                                  <span className="flex-1">{lesson.title}</span>
-                                  <span className="text-xs text-muted-foreground">{lesson.duration}m</span>
-                                </Link>
-                              </SidebarMenuButton>
-                            </SidebarMenuItem>
-                          );
-                        })}
-                      </SidebarMenu>
-                    </CollapsibleContent>
-                  </SidebarMenuItem>
-                </Collapsible>
-              ))}
+              {courseModules.map((module) => {
+                const moduleProgress = getModuleProgress(module.id);
+                const isModuleComplete = moduleProgress === 100;
+                
+                return (
+                  <Collapsible
+                    key={module.id}
+                    open={openModules.has(module.id)}
+                    onOpenChange={() => toggleModule(module.id)}
+                  >
+                    <SidebarMenuItem>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton 
+                          className="w-full font-medium group"
+                          data-testid={`button-toggle-module-${module.id}`}
+                        >
+                          <ChevronDown 
+                            className={`w-4 h-4 transition-transform ${
+                              openModules.has(module.id) ? "rotate-0" : "-rotate-90"
+                            }`}
+                          />
+                          <span className="flex-1 text-left text-sm">
+                            {module.number}. {module.title.length > 30 ? module.title.substring(0, 30) + '...' : module.title}
+                          </span>
+                          {isModuleComplete && (
+                            <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          )}
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenu className="ml-2 mt-1 space-y-0.5 border-l-2 border-border pl-2">
+                          {module.lessons.map((lesson) => {
+                            const isActive = isLessonActive(module.id, lesson.id);
+                            const isCompleted = completedLessons.has(lesson.id);
+                            
+                            return (
+                              <SidebarMenuItem key={lesson.id}>
+                                <SidebarMenuButton 
+                                  asChild 
+                                  isActive={isActive}
+                                  className="text-xs py-1.5"
+                                  data-testid={`link-lesson-${lesson.id}`}
+                                >
+                                  <Link href={`/module/${module.id}/lesson/${lesson.id}`}>
+                                    {isCompleted ? (
+                                      <CheckCircle2 className="w-3 h-3 text-primary flex-shrink-0" />
+                                    ) : (
+                                      <Circle className="w-3 h-3 flex-shrink-0" />
+                                    )}
+                                    <span className="flex-1 truncate">{lesson.title}</span>
+                                    <span className="text-xs text-muted-foreground flex-shrink-0">{lesson.duration}m</span>
+                                  </Link>
+                                </SidebarMenuButton>
+                              </SidebarMenuItem>
+                            );
+                          })}
+                        </SidebarMenu>
+                      </CollapsibleContent>
+                    </SidebarMenuItem>
+                  </Collapsible>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-4">
-        <div className="text-xs text-muted-foreground">
-          <p className="font-medium mb-1">Course Progress</p>
-          <div className="flex items-center justify-between">
-            <span>{completedLessons.size} lessons completed</span>
-            <span className="font-semibold text-foreground">
-              {Math.round((completedLessons.size / getAllLessonsCount()) * 100)}%
-            </span>
+      <SidebarFooter className="p-4 border-t">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <Award className="w-4 h-4 text-primary" />
+            <span className="text-xs font-semibold">Overall Progress</span>
+          </div>
+          <div>
+            <div className="flex items-center justify-between text-xs mb-2">
+              <span className="text-muted-foreground">{completedLessons.size} of {totalLessons} lessons</span>
+              <span className="font-bold text-primary">{overallProgress}%</span>
+            </div>
+            <div className="w-full bg-secondary rounded-full h-2 overflow-hidden">
+              <div 
+                className="bg-primary h-2 rounded-full transition-all duration-500"
+                style={{ width: `${overallProgress}%` }}
+              />
+            </div>
           </div>
         </div>
       </SidebarFooter>
     </Sidebar>
   );
-}
-
-function getAllLessonsCount() {
-  return courseModules.reduce((sum, module) => sum + module.lessons.length, 0);
 }

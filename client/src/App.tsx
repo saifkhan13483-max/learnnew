@@ -8,7 +8,7 @@ import CourseSidebar from "@/components/CourseSidebar";
 import Home from "@/pages/Home";
 import Lesson from "@/pages/Lesson";
 import NotFound from "@/pages/not-found";
-import { Menu } from "lucide-react";
+import { Menu, GraduationCap } from "lucide-react";
 
 function Router() {
   return (
@@ -22,7 +22,7 @@ function Router() {
 
 function App() {
   const style = {
-    "--sidebar-width": "20rem",
+    "--sidebar-width": "21rem",
     "--sidebar-width-icon": "4rem",
   };
 
@@ -33,12 +33,15 @@ function App() {
           <div className="flex h-screen w-full">
             <CourseSidebar />
             <div className="flex flex-col flex-1 overflow-hidden">
-              <header className="flex items-center justify-between p-4 border-b bg-background sticky top-0 z-10">
-                <SidebarTrigger data-testid="button-sidebar-toggle">
+              <header className="flex items-center gap-4 px-6 py-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-10">
+                <SidebarTrigger data-testid="button-sidebar-toggle" className="hover-elevate">
                   <Menu className="w-5 h-5" />
                 </SidebarTrigger>
-                <div className="text-sm font-medium text-muted-foreground">
-                  AI No-Code Web Development Course
+                <div className="flex items-center gap-2 flex-1">
+                  <GraduationCap className="w-5 h-5 text-primary" />
+                  <span className="font-semibold text-sm hidden sm:inline">
+                    AI No-Code Web Development Course
+                  </span>
                 </div>
               </header>
               <main className="flex-1 overflow-y-auto">
