@@ -36,30 +36,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/10 to-background pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-32">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="secondary" className="mb-6 text-xs font-semibold px-4 py-1.5" data-testid="badge-course-type">
-              <Zap className="w-3.5 h-3.5 mr-1.5" />
-              Complete Online Course
-            </Badge>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text" data-testid="heading-course-title">
-              AI No-Code Web Development
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto" data-testid="text-course-description">
-              Master the art of building any type of website without coding. Learn to use AI agents 
-              and modern no-code tools to create portfolios, web apps, forums, social platforms, and more.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div className="relative overflow-hidden border-b">
+        <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
+          <div className="text-center space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight" data-testid="heading-course-title">
+                AI No-Code Web Development
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed" data-testid="text-course-description">
+                Master building any type of website without coding—from portfolios to full web applications
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link href={`/module/${courseModules[0].id}/lesson/${courseModules[0].lessons[0].id}`}>
-                <Button size="lg" className="text-base px-8 h-12 gap-2" data-testid="button-start-learning">
+                <Button size="lg" className="px-6 h-11" data-testid="button-start-learning">
                   Start Learning
-                  <Zap className="w-4 h-4" />
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="text-base px-8 h-12" asChild data-testid="button-view-modules">
-                <a href="#modules">Browse Modules</a>
+              <Button size="lg" variant="outline" className="px-6 h-11" asChild data-testid="button-view-modules">
+                <a href="#modules">View Curriculum</a>
               </Button>
             </div>
           </div>
@@ -67,92 +62,52 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="hover-elevate border-2">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between mb-3">
-                <div className="p-3 bg-primary/10 rounded-xl">
-                  <BookOpen className="w-6 h-6 text-primary" />
-                </div>
-                <Badge variant="secondary" className="text-xs">Essential</Badge>
-              </div>
-              <div className="text-3xl font-bold mb-1" data-testid="text-stat-modules">{courseModules.length}</div>
-              <div className="text-sm text-muted-foreground font-medium">Comprehensive Modules</div>
-              <div className="text-xs text-muted-foreground mt-2">{totalLessons} detailed lessons</div>
-            </CardContent>
-          </Card>
-
-          <Card className="hover-elevate border-2">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between mb-3">
-                <div className="p-3 bg-primary/10 rounded-xl">
-                  <Clock className="w-6 h-6 text-primary" />
-                </div>
-                <Badge variant="secondary" className="text-xs">Flexible</Badge>
-              </div>
-              <div className="text-3xl font-bold mb-1" data-testid="text-stat-duration">~{Math.round(totalDuration / 60)}h</div>
-              <div className="text-sm text-muted-foreground font-medium">Total Duration</div>
-              <div className="text-xs text-muted-foreground mt-2">Learn at your pace</div>
-            </CardContent>
-          </Card>
-
-          <Card className="hover-elevate border-2">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between mb-3">
-                <div className="p-3 bg-primary/10 rounded-xl">
-                  <Target className="w-6 h-6 text-primary" />
-                </div>
-                <Badge variant="secondary" className="text-xs">Practical</Badge>
-              </div>
-              <div className="text-3xl font-bold mb-1" data-testid="text-stat-projects">7</div>
-              <div className="text-sm text-muted-foreground font-medium">Hands-on Projects</div>
-              <div className="text-xs text-muted-foreground mt-2">Build real applications</div>
-            </CardContent>
-          </Card>
-
-          <Card className="hover-elevate border-2">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between mb-3">
-                <div className="p-3 bg-primary/10 rounded-xl">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
-                <Badge variant="secondary" className="text-xs">Complete</Badge>
-              </div>
-              <div className="text-3xl font-bold mb-1">100%</div>
-              <div className="text-sm text-muted-foreground font-medium">No Coding Required</div>
-              <div className="text-xs text-muted-foreground mt-2">AI-powered workflow</div>
-            </CardContent>
-          </Card>
+      <div className="border-b">
+        <div className="max-w-5xl mx-auto px-6 py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2" data-testid="text-stat-modules">{courseModules.length}</div>
+              <div className="text-sm text-muted-foreground">Modules</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2" data-testid="text-stat-duration">{totalLessons}</div>
+              <div className="text-sm text-muted-foreground">Lessons</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2">~{Math.round(totalDuration / 60)}h</div>
+              <div className="text-sm text-muted-foreground">Duration</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2" data-testid="text-stat-projects">7</div>
+              <div className="text-sm text-muted-foreground">Projects</div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* What You'll Learn Section */}
-      <div className="bg-muted/30 border-y">
-        <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+      <div className="border-b bg-muted/30">
+        <div className="max-w-5xl mx-auto px-6 py-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What You'll Master</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Build seven different types of websites using cutting-edge AI tools and no-code platforms
+            <h2 className="text-3xl font-bold mb-3">What You'll Master</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Build seven types of websites using AI tools and no-code platforms
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {[
-              { title: "Static Websites", desc: "Portfolios and landing pages", icon: "🎨" },
-              { title: "Dynamic Websites", desc: "Blogs and product catalogs", icon: "📰" },
-              { title: "Web Applications", desc: "Interactive tools and SaaS", icon: "⚡" },
-              { title: "Forums", desc: "Community platforms", icon: "💬" },
-              { title: "Social Platforms", desc: "Networking and content sharing", icon: "🌐" },
-              { title: "Membership Sites", desc: "Paid content and subscriptions", icon: "🔐" },
-              { title: "Directories", desc: "Searchable listings", icon: "📍" }
+              { title: "Static Websites", desc: "Portfolios and landing pages" },
+              { title: "Dynamic Websites", desc: "Blogs and product catalogs" },
+              { title: "Web Applications", desc: "Interactive tools and SaaS" },
+              { title: "Forums", desc: "Community platforms" },
+              { title: "Social Platforms", desc: "Networking and content sharing" },
+              { title: "Membership Sites", desc: "Paid content and subscriptions" },
+              { title: "Directories", desc: "Searchable listings and databases" }
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-4 p-6 bg-background rounded-xl border hover-elevate">
-                <div className="text-3xl">{item.icon}</div>
-                <div>
-                  <h3 className="font-semibold mb-1">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </div>
+              <div key={i} className="p-5 bg-background rounded-lg border">
+                <h3 className="font-semibold mb-1">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -160,16 +115,16 @@ export default function Home() {
       </div>
 
       {/* Modules Section */}
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+      <div className="max-w-5xl mx-auto px-6 py-16">
         <div id="modules" className="scroll-mt-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-modules">Course Curriculum</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              12 comprehensive modules taking you from complete beginner to confident no-code developer
+            <h2 className="text-3xl font-bold mb-3" data-testid="heading-modules">Course Curriculum</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              12 modules from beginner to advanced
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="space-y-3">
             {courseModules.map((module) => (
               <ModuleCard 
                 key={module.id} 
@@ -179,30 +134,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        {/* CTA Section */}
-        <Card className="bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2">
-          <CardContent className="p-12 text-center">
-            <div className="max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                <TrendingUp className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium">Join the no-code revolution</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-cta">
-                Ready to Build Without Code?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Start your journey today and learn to create professional websites using AI and no-code tools
-              </p>
-              <Link href={`/module/${courseModules[0].id}/lesson/${courseModules[0].lessons[0].id}`}>
-                <Button size="lg" className="text-base px-8 h-12 gap-2" data-testid="button-get-started">
-                  Begin Your Journey
-                  <Zap className="w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
