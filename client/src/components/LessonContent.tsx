@@ -34,22 +34,22 @@ export default function LessonContent({ content }: LessonContentProps) {
       );
     },
     h1: ({ children }: any) => (
-      <h1 className="text-3xl font-bold mt-8 mb-4 first:mt-0" data-testid="heading-h1">
+      <h1 className="text-2xl md:text-3xl font-bold mt-10 mb-5 first:mt-0 tracking-tight" data-testid="heading-h1">
         {children}
       </h1>
     ),
     h2: ({ children }: any) => (
-      <h2 className="text-2xl font-semibold mt-8 mb-3" data-testid="heading-h2">
+      <h2 className="text-xl md:text-2xl font-semibold mt-8 mb-4 tracking-tight" data-testid="heading-h2">
         {children}
       </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-xl font-semibold mt-6 mb-2" data-testid="heading-h3">
+      <h3 className="text-lg md:text-xl font-semibold mt-6 mb-3" data-testid="heading-h3">
         {children}
       </h3>
     ),
     p: ({ children }: any) => (
-      <p className="leading-relaxed mb-4 text-foreground">
+      <p className="leading-relaxed mb-5 text-foreground/90">
         {children}
       </p>
     ),

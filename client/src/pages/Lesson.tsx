@@ -54,63 +54,57 @@ export default function Lesson() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-6 py-8 md:py-12">
+      <div className="max-w-3xl mx-auto px-6 py-8 md:py-12">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm mb-8" data-testid="breadcrumb">
           <Link 
             href="/" 
-            className="text-muted-foreground hover:text-foreground transition-colors font-medium cursor-pointer"
+            className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
           >
             Home
           </Link>
           <ChevronRight className="w-4 h-4 text-muted-foreground" />
           <span className="text-muted-foreground">Module {module.number}</span>
           <ChevronRight className="w-4 h-4 text-muted-foreground" />
-          <span className="text-foreground font-medium">Lesson {lessonIndex + 1}</span>
+          <span className="text-foreground">Lesson {lessonIndex + 1}</span>
         </nav>
 
         {/* Lesson Header */}
-        <div className="mb-8">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <Badge variant="secondary" className="font-semibold" data-testid="badge-module">
-              Module {module.number}
-            </Badge>
-            <Badge variant="outline" className="gap-1.5" data-testid="badge-duration">
-              <Clock className="w-3.5 h-3.5" />
-              {lesson.duration} min read
-            </Badge>
-            <Badge variant="outline" className="gap-1.5">
-              Lesson {lessonIndex + 1} of {module.lessons.length}
-            </Badge>
+        <div className="mb-10">
+          <div className="flex flex-wrap items-center gap-2 mb-4 text-sm text-muted-foreground">
+            <span>Module {module.number}</span>
+            <span>·</span>
+            <span data-testid="badge-duration">
+              {lesson.duration} min
+            </span>
+            <span>·</span>
+            <span>Lesson {lessonIndex + 1} of {module.lessons.length}</span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight" data-testid="heading-lesson-title">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight tracking-tight" data-testid="heading-lesson-title">
             {lesson.title}
           </h1>
           
-          <p className="text-lg text-muted-foreground mb-6" data-testid="text-module-title">
+          <p className="text-muted-foreground mb-6" data-testid="text-module-title">
             {module.title}
           </p>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <Button 
-              variant={isCompleted ? "secondary" : "default"}
-              onClick={toggleComplete}
-              className="gap-2"
-              data-testid="button-toggle-complete"
-            >
-              <CheckCircle2 className="w-4 h-4" />
-              {isCompleted ? "Completed" : "Mark as Complete"}
-            </Button>
-          </div>
+          <Button 
+            variant={isCompleted ? "secondary" : "default"}
+            onClick={toggleComplete}
+            size="sm"
+            className="gap-2"
+            data-testid="button-toggle-complete"
+          >
+            <CheckCircle2 className="w-4 h-4" />
+            {isCompleted ? "Completed" : "Mark Complete"}
+          </Button>
         </div>
 
         {/* Lesson Content */}
-        <Card className="border-2 mb-8">
-          <div className="p-8 md:p-12">
-            <LessonContent content={lesson.content} />
-          </div>
-        </Card>
+        <div className="mb-12">
+          <LessonContent content={lesson.content} />
+        </div>
 
         {/* Module Project Card */}
         {module.project && lessonIndex === module.lessons.length - 1 && (
