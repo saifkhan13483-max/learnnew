@@ -224,9 +224,17 @@ AI agents are sophisticated programs powered by large language models (like GPT-
 
 **Example Prompt**:
 \`\`\`
-Create a landing page for a fitness app with a hero section 
-featuring a workout video, three benefit cards, pricing table, 
-and contact form. Use energetic colors and modern design.
+Create a landing page for a fitness app with the following sections:
+
+1. Hero section with an embedded workout video
+2. Three benefit cards highlighting key features
+3. Pricing table showing subscription options
+4. Contact form for user inquiries
+
+Design requirements:
+- Use energetic, vibrant colors
+- Modern, clean design aesthetic
+- Mobile-responsive layout
 \`\`\`
 
 ### Replit (replit.com)
