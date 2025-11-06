@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import type { Components } from 'react-markdown';
@@ -268,7 +269,7 @@ export default function LessonContent({ content }: LessonContentProps) {
 
   return (
     <div className="prose prose-lg max-w-none" data-testid="lesson-content">
-      <ReactMarkdown components={components}>
+      <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
         {content}
       </ReactMarkdown>
     </div>
