@@ -3,6 +3,10 @@ export interface Lesson {
   title: string;
   duration: number;
   content: string;
+  objectives?: string[];
+  keyTakeaways?: string[];
+  prerequisites?: string[];
+  resources?: Resource[];
 }
 
 export interface Module {
@@ -10,8 +14,16 @@ export interface Module {
   number: number;
   title: string;
   description: string;
+  difficulty?: 'beginner' | 'intermediate' | 'advanced';
   lessons: Lesson[];
   project?: string;
+  learningOutcomes?: string[];
+}
+
+export interface Resource {
+  title: string;
+  url: string;
+  type: 'article' | 'video' | 'tool' | 'documentation' | 'tutorial';
 }
 
 export const courseModules: Module[] = [
@@ -20,11 +32,43 @@ export const courseModules: Module[] = [
     number: 1,
     title: "Introduction to AI-Powered No-Code Web Development",
     description: "Learn the fundamentals of building websites using AI agents and no-code tools",
+    difficulty: 'beginner',
+    learningOutcomes: [
+      'Understand what no-code development is and its advantages',
+      'Learn about AI agents and their role in web development',
+      'Explore modern no-code tools and platforms',
+      'Set up your development workflow and accounts',
+      'Understand how AI transforms the web creation process'
+    ],
     lessons: [
       {
         id: "lesson-1-1",
         title: "What is No-Code Development?",
         duration: 15,
+        objectives: [
+          'Define no-code development and its key benefits',
+          'Compare traditional coding vs no-code approaches',
+          'Identify use cases for no-code development',
+          'Understand the modern no-code technology stack'
+        ],
+        keyTakeaways: [
+          'No-code development allows anyone to build websites without writing code',
+          'AI agents and visual tools accelerate development from months to hours',
+          'Modern no-code platforms can create professional-grade websites',
+          'You can build 7 different types of websites using no-code tools'
+        ],
+        resources: [
+          {
+            title: 'No-Code Movement Overview',
+            url: 'https://www.nocode.tech/what-is-no-code',
+            type: 'article'
+          },
+          {
+            title: 'The Future of No-Code',
+            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            type: 'video'
+          }
+        ],
         content: `# What is No-Code Development?
 
 No-code development is a revolutionary approach to building websites and applications without writing traditional programming code. Instead of learning complex programming languages, you'll use visual interfaces, AI agents, and pre-built components to bring your ideas to life.
@@ -117,6 +161,36 @@ No-code development democratizes website creation. With AI agents and modern too
         id: "lesson-1-2",
         title: "Role of AI Agents (Lovable, Replit, Cursor, etc.)",
         duration: 20,
+        objectives: [
+          'Understand what AI agents are and how they work',
+          'Compare popular AI development platforms',
+          'Learn when to use each platform',
+          'Write effective prompts for AI agents'
+        ],
+        keyTakeaways: [
+          'AI agents can understand natural language and generate code automatically',
+          'Different platforms are best suited for different types of projects',
+          'Lovable excels at design-first projects, Replit for full-stack apps',
+          'Effective prompts are clear, specific, and context-aware'
+        ],
+        prerequisites: ['Understanding of basic web concepts from Lesson 1.1'],
+        resources: [
+          {
+            title: 'Lovable Platform',
+            url: 'https://lovable.dev',
+            type: 'tool'
+          },
+          {
+            title: 'Replit Agent Documentation',
+            url: 'https://docs.replit.com',
+            type: 'documentation'
+          },
+          {
+            title: 'Cursor AI Features',
+            url: 'https://cursor.sh',
+            type: 'tool'
+          }
+        ],
         content: `# Role of AI Agents in Web Development
 
 AI agents are intelligent assistants that understand your requirements in plain English and generate functional code, complete designs, and entire websites. They're revolutionizing how we build for the web.

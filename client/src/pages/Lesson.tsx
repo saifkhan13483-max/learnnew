@@ -4,8 +4,8 @@ import LessonContent from "@/components/LessonContent";
 import LessonNavigation from "@/components/LessonNavigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
-import { CheckCircle2, Clock, Lightbulb, ChevronRight } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle2, Clock, Lightbulb, ChevronRight, Target, BookOpen, ExternalLink, FileText, Video, Wrench, BookMarked } from "lucide-react";
 import { useEffect, useState } from "react";
 import NotFound from "./not-found";
 import { Link } from "wouter";
@@ -63,6 +63,16 @@ export default function Lesson() {
 
   const lessonIndex = module.lessons.findIndex(l => l.id === lessonId);
 
+  const getResourceIcon = (type: string) => {
+    switch (type) {
+      case 'video': return Video;
+      case 'tool': return Wrench;
+      case 'documentation': return BookMarked;
+      case 'article': return FileText;
+      default: return ExternalLink;
+    }
+  };
+
   return (
     <div className="bg-background">
       <div className="max-w-5xl mx-auto px-6 py-8 md:py-12">
@@ -112,10 +122,122 @@ export default function Lesson() {
           </Button>
         </div>
 
+        {/* Learning Objectives */}
+        {lesson.objectives && lesson.objectives.length > 0 && (
+          <Card className="mb-8 border-2">
+            <CardContent className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Target className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold mb-3" data-testid="heading-objectives">
+                    Learning Objectives
+                  </h3>
+                  <ul className="space-y-2">
+                    {lesson.objectives.map((objective, index) => (
+                      <li key={index} className="flex items-start gap-2 text-sm text-foreground/90">
+                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>{objective}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Prerequisites */}
+        {lesson.prerequisites && lesson.prerequisites.length > 0 && (
+          <Card className="mb-8 bg-muted/30">
+            <CardContent className="p-5">
+              <div className="flex items-start gap-3">
+                <BookOpen className="w-4 h-4 text-muted-foreground mt-0.5" />
+                <div className="flex-1">
+                  <h4 className="text-sm font-semibold mb-2">Prerequisites</h4>
+                  <ul className="space-y-1">
+                    {lesson.prerequisites.map((prereq, index) => (
+                      <li key={index} className="text-sm text-muted-foreground">
+                        {prereq}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Lesson Content */}
         <div className="mb-12">
           <LessonContent content={lesson.content} />
         </div>
+
+        {/* Key Takeaways */}
+        {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
+          <Card className="mb-8 border-2 bg-primary/5">
+            <CardContent className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Lightbulb className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold mb-3" data-testid="heading-takeaways">
+                    Key Takeaways
+                  </h3>
+                  <ul className="space-y-2">
+                    {lesson.keyTakeaways.map((takeaway, index) => (
+                      <li key={index} className="flex items-start gap-2 text-sm text-foreground/90">
+                        <span className="text-primary font-bold mt-0.5">•</span>
+                        <span>{takeaway}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Resources */}
+        {lesson.resources && lesson.resources.length > 0 && (
+          <Card className="mb-8">
+            <CardContent className="p-6">
+              <h3 className="text-lg font-bold mb-4" data-testid="heading-resources">
+                Additional Resources
+              </h3>
+              <div className="grid gap-3">
+                {lesson.resources.map((resource, index) => {
+                  const Icon = getResourceIcon(resource.type);
+                  return (
+                    <a
+                      key={index}
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-4 rounded-lg border hover-elevate active-elevate-2 transition-all group"
+                      data-testid={`link-resource-${index}`}
+                    >
+                      <div className="p-2 bg-muted rounded-md">
+                        <Icon className="w-4 h-4 text-muted-foreground" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-sm group-hover:text-primary transition-colors">
+                          {resource.title}
+                        </div>
+                        <div className="text-xs text-muted-foreground capitalize">
+                          {resource.type}
+                        </div>
+                      </div>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors flex-shrink-0" />
+                    </a>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Module Project Card */}
         {module.project && lessonIndex === module.lessons.length - 1 && (

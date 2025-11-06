@@ -1,7 +1,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, Clock, CheckCircle2, ArrowRight, Lightbulb } from "lucide-react";
+import { BookOpen, Clock, CheckCircle2, ArrowRight, Lightbulb, Target, Signal } from "lucide-react";
 import { Link } from "wouter";
 import type { Module } from "@shared/courseData";
 
@@ -15,16 +15,35 @@ export default function ModuleCard({ module, progress = 0 }: ModuleCardProps) {
   const isCompleted = progress === 100;
   const isInProgress = progress > 0 && progress < 100;
   
+  const getDifficultyVariant = (difficulty?: string): 'default' | 'secondary' | 'outline' => {
+    switch (difficulty) {
+      case 'beginner': return 'secondary';
+      case 'intermediate': return 'outline';
+      case 'advanced': return 'outline';
+      default: return 'outline';
+    }
+  };
+
   return (
     <Link href={`/module/${module.id}/lesson/${module.lessons[0].id}`}>
       <Card className="hover:border-foreground/20 transition-colors group cursor-pointer">
         <CardContent className="p-6">
           <div className="flex items-start justify-between gap-6">
             <div className="flex-1 space-y-3">
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2">
                 <Badge variant="outline" className="text-xs font-medium">
                   Module {module.number}
                 </Badge>
+                {module.difficulty && (
+                  <Badge 
+                    variant={getDifficultyVariant(module.difficulty)}
+                    className="text-xs capitalize"
+                    data-testid={`badge-difficulty-${module.id}`}
+                  >
+                    <Signal className="w-3 h-3 mr-1" />
+                    {module.difficulty}
+                  </Badge>
+                )}
                 {isCompleted && (
                   <div className="flex items-center gap-1.5 text-primary text-xs" data-testid={`icon-completed-${module.id}`}>
                     <CheckCircle2 className="w-4 h-4" />
@@ -45,7 +64,28 @@ export default function ModuleCard({ module, progress = 0 }: ModuleCardProps) {
                 </p>
               </div>
               
-              <div className="flex items-center gap-4 text-xs text-muted-foreground">
+              {module.learningOutcomes && module.learningOutcomes.length > 0 && (
+                <div className="pt-2 border-t">
+                  <div className="flex items-start gap-2 mb-2">
+                    <Target className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-xs font-semibold text-foreground">What you'll learn:</span>
+                  </div>
+                  <ul className="space-y-1.5 ml-5">
+                    {module.learningOutcomes.slice(0, 3).map((outcome, index) => (
+                      <li key={index} className="text-xs text-muted-foreground leading-relaxed">
+                        {outcome}
+                      </li>
+                    ))}
+                    {module.learningOutcomes.length > 3 && (
+                      <li className="text-xs text-muted-foreground italic">
+                        +{module.learningOutcomes.length - 3} more...
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              )}
+              
+              <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1.5">
                   <BookOpen className="w-3.5 h-3.5" />
                   <span data-testid={`text-lesson-count-${module.id}`}>{module.lessons.length} lessons</span>
