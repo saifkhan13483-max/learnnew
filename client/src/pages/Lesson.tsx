@@ -74,71 +74,74 @@ export default function Lesson() {
   };
 
   return (
-    <div className="bg-background">
-      <div className="max-w-5xl mx-auto px-6 py-8 md:py-12">
+    <div className="bg-background min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm mb-8" data-testid="breadcrumb">
+        <nav className="flex items-center gap-2 text-sm mb-10" data-testid="breadcrumb">
           <Link 
             href="/" 
-            className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer font-medium"
           >
             Home
           </Link>
           <ChevronRight className="w-4 h-4 text-muted-foreground" />
-          <span className="text-muted-foreground">Module {module.number}</span>
+          <span className="text-muted-foreground font-medium">Module {module.number}</span>
           <ChevronRight className="w-4 h-4 text-muted-foreground" />
-          <span className="text-foreground">Lesson {lessonIndex + 1}</span>
+          <span className="text-foreground font-medium">Lesson {lessonIndex + 1}</span>
         </nav>
 
         {/* Lesson Header */}
-        <div className="mb-10">
-          <div className="flex flex-wrap items-center gap-2 mb-4 text-sm text-muted-foreground font-extrabold">
-            <span>Module {module.number}</span>
-            <span>·</span>
-            <span data-testid="badge-duration">
-              {lesson.duration} min
-            </span>
-            <span>·</span>
+        <div className="mb-12 md:mb-16">
+          <div className="flex flex-wrap items-center gap-3 mb-5 text-sm text-muted-foreground font-semibold">
+            <Badge variant="secondary" className="font-semibold">
+              Module {module.number}
+            </Badge>
+            <span className="text-muted-foreground/50">•</span>
+            <div className="flex items-center gap-1.5" data-testid="badge-duration">
+              <Clock className="w-3.5 h-3.5" />
+              <span>{lesson.duration} min read</span>
+            </div>
+            <span className="text-muted-foreground/50">•</span>
             <span>Lesson {lessonIndex + 1} of {module.lessons.length}</span>
           </div>
           
-          <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight tracking-tight" data-testid="heading-lesson-title">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight tracking-tight" data-testid="heading-lesson-title">
             {lesson.title}
           </h1>
           
-          <p className="text-muted-foreground mb-6" data-testid="text-module-title">
+          <p className="text-lg text-muted-foreground mb-8" data-testid="text-module-title">
             {module.title}
           </p>
 
           <Button 
             variant={isCompleted ? "secondary" : "default"}
             onClick={toggleComplete}
-            size="sm"
-            className="gap-2"
+            size="default"
+            className="gap-2 font-semibold"
             data-testid="button-toggle-complete"
           >
             <CheckCircle2 className="w-4 h-4" />
-            {isCompleted ? "Completed" : "Mark Complete"}
+            {isCompleted ? "Completed" : "Mark as Complete"}
           </Button>
         </div>
 
         {/* Learning Objectives */}
         {lesson.objectives && lesson.objectives.length > 0 && (
-          <Card className="mb-8 border-2">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Target className="w-5 h-5 text-primary" />
+          <Card className="mb-10 border-2 shadow-sm hover-elevate transition-all">
+            <CardContent className="p-6 md:p-8">
+              <div className="flex items-start gap-5">
+                <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0">
+                  <Target className="w-6 h-6 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold mb-3" data-testid="heading-objectives">
+                  <h3 className="text-xl font-bold mb-4" data-testid="heading-objectives">
                     Learning Objectives
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {lesson.objectives.map((objective, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-foreground/90">
-                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>{objective}</span>
+                      <li key={index} className="flex items-start gap-3 text-[16px] md:text-[17px] text-foreground/90">
+                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="leading-relaxed">{objective}</span>
                       </li>
                     ))}
                   </ul>
@@ -150,15 +153,15 @@ export default function Lesson() {
 
         {/* Prerequisites */}
         {lesson.prerequisites && lesson.prerequisites.length > 0 && (
-          <Card className="mb-8 bg-muted/30">
-            <CardContent className="p-5">
-              <div className="flex items-start gap-3">
-                <BookOpen className="w-4 h-4 text-muted-foreground mt-0.5" />
+          <Card className="mb-10 bg-muted/40 border shadow-sm">
+            <CardContent className="p-6 md:p-7">
+              <div className="flex items-start gap-4">
+                <BookOpen className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
-                  <h4 className="text-sm font-semibold mb-2">Prerequisites</h4>
-                  <ul className="space-y-1">
+                  <h4 className="text-base font-semibold mb-3">Prerequisites</h4>
+                  <ul className="space-y-2">
                     {lesson.prerequisites.map((prereq, index) => (
-                      <li key={index} className="text-sm text-muted-foreground">
+                      <li key={index} className="text-[15px] md:text-[16px] text-muted-foreground leading-relaxed">
                         {prereq}
                       </li>
                     ))}
@@ -176,21 +179,21 @@ export default function Lesson() {
 
         {/* Key Takeaways */}
         {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
-          <Card className="mb-8 border-2 bg-primary/5">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Lightbulb className="w-5 h-5 text-primary" />
+          <Card className="mb-10 border-2 bg-primary/5 shadow-sm hover-elevate transition-all">
+            <CardContent className="p-6 md:p-8">
+              <div className="flex items-start gap-5">
+                <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0">
+                  <Lightbulb className="w-6 h-6 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold mb-3" data-testid="heading-takeaways">
+                  <h3 className="text-xl font-bold mb-4" data-testid="heading-takeaways">
                     Key Takeaways
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {lesson.keyTakeaways.map((takeaway, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-foreground/90">
-                        <span className="text-primary font-bold mt-0.5">•</span>
-                        <span>{takeaway}</span>
+                      <li key={index} className="flex items-start gap-3 text-[16px] md:text-[17px] text-foreground/90">
+                        <span className="text-primary font-bold text-xl mt-0.5 flex-shrink-0">•</span>
+                        <span className="leading-relaxed">{takeaway}</span>
                       </li>
                     ))}
                   </ul>
@@ -202,12 +205,12 @@ export default function Lesson() {
 
         {/* Resources */}
         {lesson.resources && lesson.resources.length > 0 && (
-          <Card className="mb-8">
-            <CardContent className="p-6">
-              <h3 className="text-lg font-bold mb-4" data-testid="heading-resources">
+          <Card className="mb-10 shadow-sm border-2">
+            <CardContent className="p-6 md:p-8">
+              <h3 className="text-xl font-bold mb-5" data-testid="heading-resources">
                 Additional Resources
               </h3>
-              <div className="grid gap-3">
+              <div className="grid gap-4">
                 {lesson.resources.map((resource, index) => {
                   const Icon = getResourceIcon(resource.type);
                   return (
@@ -216,21 +219,21 @@ export default function Lesson() {
                       href={resource.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-lg border hover-elevate active-elevate-2 transition-all group"
+                      className="flex items-center gap-4 p-5 rounded-xl border-2 hover-elevate active-elevate-2 transition-all group shadow-sm"
                       data-testid={`link-resource-${index}`}
                     >
-                      <div className="p-2 bg-muted rounded-md">
-                        <Icon className="w-4 h-4 text-muted-foreground" />
+                      <div className="p-3 bg-muted/50 rounded-lg flex-shrink-0">
+                        <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-sm group-hover:text-primary transition-colors">
+                        <div className="font-semibold text-[16px] group-hover:text-primary transition-colors mb-1">
                           {resource.title}
                         </div>
-                        <div className="text-xs text-muted-foreground capitalize">
+                        <div className="text-sm text-muted-foreground capitalize">
                           {resource.type}
                         </div>
                       </div>
-                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors flex-shrink-0" />
+                      <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                     </a>
                   );
                 })}
@@ -241,20 +244,20 @@ export default function Lesson() {
 
         {/* Module Project Card */}
         {module.project && lessonIndex === module.lessons.length - 1 && (
-          <Card className="mb-8 border-2 bg-primary/5">
-            <div className="p-6 md:p-8">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary/10 rounded-xl">
-                  <Lightbulb className="w-6 h-6 text-primary" />
+          <Card className="mb-10 border-2 bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg hover-elevate transition-all">
+            <div className="p-6 md:p-10">
+              <div className="flex items-start gap-5">
+                <div className="p-4 bg-primary/15 rounded-2xl flex-shrink-0 shadow-sm">
+                  <Lightbulb className="w-7 h-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2" data-testid="heading-project">
+                  <h3 className="text-2xl font-bold mb-3" data-testid="heading-project">
                     Module Project
                   </h3>
-                  <p className="text-muted-foreground mb-4" data-testid="text-project">
+                  <p className="text-[17px] md:text-[18px] text-foreground/90 mb-5 leading-relaxed" data-testid="text-project">
                     {module.project}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-[15px] md:text-[16px] text-muted-foreground leading-relaxed">
                     Apply what you've learned in this module by building this hands-on project. 
                     This practical exercise will help reinforce the concepts and give you real-world experience.
                   </p>

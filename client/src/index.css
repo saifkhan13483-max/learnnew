@@ -248,6 +248,23 @@
     pointer-events: none;
   }
 
+  /* Enhanced prose styling for lesson content */
+  .prose {
+    @apply text-foreground;
+  }
+  
+  .prose strong {
+    @apply text-foreground font-bold;
+  }
+  
+  .prose em {
+    @apply text-foreground/90;
+  }
+  
+  .prose hr {
+    @apply border-border my-12;
+  }
+
   /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
    * buttons/badges can remove the automatic brightness adjustment on interactions
    * and program their own. */

@@ -21,51 +21,60 @@ function CodeBlock({ language, children }: { language: string; children: string 
   };
 
   return (
-    <div className="relative group my-6" data-testid="code-block">
-      <div className="absolute right-2 top-2 z-10">
+    <div className="relative group my-8" data-testid="code-block">
+      <div className="absolute right-3 top-3 z-10">
         <Button
           size="sm"
           variant="secondary"
           onClick={copyToClipboard}
-          className="opacity-0 group-hover:opacity-100 transition-opacity"
+          className="opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md"
           data-testid="button-copy-code"
         >
           {copied ? (
             <>
-              <Check className="w-3 h-3 mr-1" />
+              <Check className="w-3.5 h-3.5 mr-1.5" />
               Copied!
             </>
           ) : (
             <>
-              <Copy className="w-3 h-3 mr-1" />
+              <Copy className="w-3.5 h-3.5 mr-1.5" />
               Copy
             </>
           )}
         </Button>
       </div>
-      <SyntaxHighlighter
-        style={oneDark}
-        language={language || 'text'}
-        PreTag="div"
-        className="!rounded-xl !my-0 shadow-lg"
-        customStyle={{
-          margin: 0,
-          padding: '2rem',
-          fontSize: '1rem',
-          lineHeight: '2',
-          letterSpacing: '0.015em',
-          backgroundColor: '#1e1e1e',
-          color: '#d4d4d4',
-        }}
-        codeTagProps={{
-          style: {
+      <div className="overflow-hidden rounded-xl border border-border/50 shadow-lg">
+        {language && (
+          <div className="bg-muted/50 px-4 py-2 border-b border-border/50">
+            <span className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-wider">
+              {language}
+            </span>
+          </div>
+        )}
+        <SyntaxHighlighter
+          style={oneDark}
+          language={language || 'text'}
+          PreTag="div"
+          className="!rounded-none !my-0"
+          customStyle={{
+            margin: 0,
+            padding: '1.75rem',
+            fontSize: '0.95rem',
+            lineHeight: '1.8',
+            letterSpacing: '0.015em',
+            backgroundColor: '#1e1e1e',
             color: '#d4d4d4',
-            fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
-          }
-        }}
-      >
-        {children}
-      </SyntaxHighlighter>
+          }}
+          codeTagProps={{
+            style: {
+              color: '#d4d4d4',
+              fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
+            }
+          }}
+        >
+          {children}
+        </SyntaxHighlighter>
+      </div>
     </div>
   );
 }
@@ -74,25 +83,25 @@ function Callout({ type, children }: { type: 'note' | 'tip' | 'warning' | 'info'
   const styles = {
     note: {
       icon: AlertCircle,
-      className: 'bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900',
+      className: 'bg-blue-50/80 dark:bg-blue-950/40 border-blue-300 dark:border-blue-800',
       iconClassName: 'text-blue-600 dark:text-blue-400',
       title: 'Note'
     },
     tip: {
       icon: Lightbulb,
-      className: 'bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-900',
+      className: 'bg-amber-50/80 dark:bg-amber-950/40 border-amber-300 dark:border-amber-800',
       iconClassName: 'text-amber-600 dark:text-amber-400',
       title: 'Tip'
     },
     warning: {
       icon: AlertTriangle,
-      className: 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-900',
+      className: 'bg-red-50/80 dark:bg-red-950/40 border-red-300 dark:border-red-800',
       iconClassName: 'text-red-600 dark:text-red-400',
       title: 'Warning'
     },
     info: {
       icon: Info,
-      className: 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900',
+      className: 'bg-emerald-50/80 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800',
       iconClassName: 'text-emerald-600 dark:text-emerald-400',
       title: 'Info'
     }
@@ -102,12 +111,14 @@ function Callout({ type, children }: { type: 'note' | 'tip' | 'warning' | 'info'
   const Icon = config.icon;
 
   return (
-    <div className={`my-8 p-5 rounded-xl border-2 ${config.className} shadow-sm`} data-testid={`callout-${type}`}>
-      <div className="flex gap-4">
-        <Icon className={`w-6 h-6 mt-0.5 flex-shrink-0 ${config.iconClassName}`} />
+    <div className={`my-10 p-6 rounded-xl border-2 ${config.className} shadow-md`} data-testid={`callout-${type}`}>
+      <div className="flex gap-5">
+        <div className={`p-2 rounded-lg bg-white/50 dark:bg-black/20 flex-shrink-0`}>
+          <Icon className={`w-6 h-6 ${config.iconClassName}`} />
+        </div>
         <div className="flex-1">
-          <div className="font-bold mb-2 text-foreground text-base">{config.title}</div>
-          <div className="text-[15px] text-foreground/90 leading-loose">
+          <div className="font-bold mb-3 text-foreground text-[17px]">{config.title}</div>
+          <div className="text-[16px] md:text-[17px] text-foreground/90 leading-[1.8]">
             {children}
           </div>
         </div>
@@ -124,7 +135,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       
       if (isInline) {
         return (
-          <code className="bg-muted px-2 py-1 rounded-md text-[15px] font-mono text-foreground border border-border/50 font-medium" {...props}>
+          <code className="bg-muted/60 px-2 py-0.5 rounded-md text-[14px] font-mono text-foreground border border-border/40 font-semibold" {...props}>
             {children}
           </code>
         );
@@ -137,22 +148,22 @@ export default function LessonContent({ content }: LessonContentProps) {
       );
     },
     h1: ({ children }: any) => (
-      <h1 className="text-3xl md:text-4xl font-bold mt-12 mb-6 first:mt-0 tracking-tight text-foreground border-b border-border/50 pb-3" data-testid="heading-h1">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-16 mb-8 first:mt-0 tracking-tight text-foreground border-b-2 border-border pb-5" data-testid="heading-h1">
         {children}
       </h1>
     ),
     h2: ({ children }: any) => (
-      <h2 className="text-2xl md:text-3xl font-bold mt-10 mb-5 tracking-tight text-foreground" data-testid="heading-h2">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mt-14 mb-6 tracking-tight text-foreground scroll-mt-20" data-testid="heading-h2">
         {children}
       </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-xl md:text-2xl font-semibold mt-8 mb-4 text-foreground" data-testid="heading-h3">
+      <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold mt-10 mb-5 text-foreground scroll-mt-20" data-testid="heading-h3">
         {children}
       </h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="text-lg md:text-xl font-semibold mt-6 mb-3 text-foreground" data-testid="heading-h4">
+      <h4 className="text-lg md:text-xl lg:text-2xl font-semibold mt-8 mb-4 text-foreground" data-testid="heading-h4">
         {children}
       </h4>
     ),
@@ -174,7 +185,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       }
       
       return (
-        <p className="leading-loose mb-6 text-foreground/90 text-[16px]">
+        <p className="leading-[1.8] mb-7 text-foreground/90 text-[17px] md:text-[18px]">
           {children}
         </p>
       );
@@ -185,7 +196,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       </ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="space-y-5 mb-10 ml-0 [counter-reset:list-counter] list-none">
+      <ol className="space-y-5 mb-12 ml-0 [counter-reset:list-counter] list-none">
         {children}
       </ol>
     ),
@@ -194,16 +205,16 @@ export default function LessonContent({ content }: LessonContentProps) {
       
       if (isOrderedList) {
         return (
-          <li className="text-foreground/95 leading-loose flex items-start gap-5 py-3 [counter-increment:list-counter] before:content-[counter(list-counter)] before:flex-shrink-0 before:w-10 before:h-10 before:rounded-full before:bg-primary/10 before:text-primary before:font-bold before:flex before:items-center before:justify-center before:text-base before:border-2 before:border-primary/20">
-            <span className="flex-1 pt-1.5 text-[16px] leading-loose">{children}</span>
+          <li className="text-foreground/95 leading-[1.8] flex items-start gap-5 py-3 [counter-increment:list-counter] before:content-[counter(list-counter)] before:flex-shrink-0 before:w-11 before:h-11 before:rounded-xl before:bg-primary/10 before:text-primary before:font-bold before:flex before:items-center before:justify-center before:text-base before:border-2 before:border-primary/20 shadow-sm">
+            <span className="flex-1 pt-2 text-[17px] md:text-[18px] leading-[1.8]">{children}</span>
           </li>
         );
       }
       
       return (
-        <li className="text-foreground/90 leading-loose flex items-start gap-4 py-2">
-          <span className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-2.5"></span>
-          <span className="flex-1 text-[16px]">{children}</span>
+        <li className="text-foreground/90 leading-[1.8] flex items-start gap-4 py-2.5">
+          <span className="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-primary mt-2.5 shadow-sm"></span>
+          <span className="flex-1 text-[17px] md:text-[18px]">{children}</span>
         </li>
       );
     },
@@ -225,20 +236,20 @@ export default function LessonContent({ content }: LessonContentProps) {
       }
       
       return (
-        <blockquote className="border-l-4 border-primary pl-6 py-4 my-8 bg-muted/50 rounded-r-xl italic text-[16px] leading-loose">
+        <blockquote className="border-l-4 border-primary pl-7 py-5 my-10 bg-muted/50 rounded-r-xl italic text-[17px] md:text-[18px] leading-[1.8] shadow-sm">
           {children}
         </blockquote>
       );
     },
     table: ({ children }: any) => (
-      <div className="overflow-x-auto my-10 rounded-xl border-2 border-border shadow-lg bg-card" data-testid="table-container">
+      <div className="overflow-x-auto my-12 rounded-xl border-2 border-border shadow-lg bg-card" data-testid="table-container">
         <table className="min-w-full border-collapse">
           {children}
         </table>
       </div>
     ),
     thead: ({ children }: any) => (
-      <thead className="bg-muted/50 backdrop-blur-sm">
+      <thead className="bg-muted/70 backdrop-blur-sm">
         {children}
       </thead>
     ),
@@ -258,14 +269,14 @@ export default function LessonContent({ content }: LessonContentProps) {
       </th>
     ),
     td: ({ children }: any) => (
-      <td className="px-6 py-4 text-sm text-foreground/90 whitespace-nowrap">
+      <td className="px-6 py-4 text-[15px] md:text-[16px] text-foreground/90">
         {children}
       </td>
     ),
     a: ({ href, children }: any) => (
       <a 
         href={href} 
-        className="text-primary hover:underline font-medium underline-offset-2"
+        className="text-primary hover:text-primary/80 underline decoration-primary/30 hover:decoration-primary/60 underline-offset-4 font-medium transition-all duration-200"
         target="_blank"
         rel="noopener noreferrer"
         data-testid="link-external"
