@@ -121,7 +121,7 @@ export default function LessonContent({ content }: LessonContentProps) {
     code({ className, children, ...props }: any) {
       const match = /language-(\w+)/.exec(className || '');
       const isInline = !match;
-      
+
       if (isInline) {
         return (
           <code className="bg-muted px-1.5 py-0.5 rounded-md text-sm font-mono text-foreground border border-border/50" {...props}>
@@ -129,7 +129,7 @@ export default function LessonContent({ content }: LessonContentProps) {
           </code>
         );
       }
-      
+
       return (
         <CodeBlock language={match[1]}>
           {String(children).replace(/\n$/, '')}
@@ -158,7 +158,7 @@ export default function LessonContent({ content }: LessonContentProps) {
     ),
     p: ({ children }: any) => {
       const text = String(children);
-      
+
       // Check for callout patterns
       if (text.startsWith('💡 Tip:') || text.includes('**Tip:**')) {
         return <Callout type="tip">{text.replace(/^💡\s*Tip:\s*/, '').replace(/\*\*Tip:\*\*\s*/, '')}</Callout>;
@@ -172,7 +172,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       if (text.startsWith('ℹ️ Info:') || text.includes('**Info:**')) {
         return <Callout type="info">{text.replace(/^ℹ️\s*Info:\s*/, '').replace(/\*\*Info:\*\*\s*/, '')}</Callout>;
       }
-      
+
       return (
         <p className="leading-relaxed mb-5 text-foreground/90">
           {children}
@@ -180,65 +180,37 @@ export default function LessonContent({ content }: LessonContentProps) {
       );
     },
     ul: ({ children }: any) => (
-      <ul className="space-y-3 mb-8 ml-0 list-none">
+      <ul className="space-y-3 my-6 ml-1 list-none" data-testid="list-unordered">
         {children}
       </ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="space-y-4 mb-8 ml-0 [counter-reset:list-counter] list-none">
+      <ol className="space-y-3 my-6 ml-6 list-decimal marker:text-primary marker:font-bold" data-testid="list-ordered">
         {children}
       </ol>
     ),
-    li: ({ children, node }: any) => {
-      const isOrderedList = node?.parent?.tagName === 'ol';
-      
-      if (isOrderedList) {
-        return (
-          <li className="text-foreground/95 leading-relaxed flex items-start gap-4 py-2.5 [counter-increment:list-counter] before:content-[counter(list-counter)] before:flex-shrink-0 before:w-9 before:h-9 before:rounded-full before:bg-primary/10 before:text-primary before:font-bold before:flex before:items-center before:justify-center before:text-base before:border before:border-primary/20">
-            <span className="flex-1 pt-1.5 text-[15px] leading-relaxed">{children}</span>
-          </li>
-        );
-      }
-      
-      return (
-        <li className="text-foreground/90 leading-relaxed flex items-start gap-3 py-1">
-          <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2.5"></span>
-          <span className="flex-1">{children}</span>
-        </li>
-      );
-    },
-    blockquote: ({ children }: any) => {
-      // Enhanced blockquote detection for callouts
-      const childrenString = String(children);
-      
-      if (childrenString.includes('Tip:') || childrenString.includes('💡')) {
-        return <Callout type="tip">{children}</Callout>;
-      }
-      if (childrenString.includes('Warning:') || childrenString.includes('⚠️')) {
-        return <Callout type="warning">{children}</Callout>;
-      }
-      if (childrenString.includes('Note:') || childrenString.includes('📝')) {
-        return <Callout type="note">{children}</Callout>;
-      }
-      if (childrenString.includes('Info:') || childrenString.includes('ℹ️')) {
-        return <Callout type="info">{children}</Callout>;
-      }
-      
-      return (
-        <blockquote className="border-l-4 border-primary pl-5 py-3 my-6 bg-muted/50 rounded-r-lg italic">
+    li: ({ children }: any) => (
+      <li className="text-foreground/90 leading-relaxed pl-2 relative before:content-['▹'] before:absolute before:-left-5 before:text-primary before:font-bold">
+        {children}
+      </li>
+    ),
+    blockquote: ({ children }: any) => (
+      <blockquote className="relative border-l-4 border-primary pl-8 pr-6 py-5 my-8 bg-gradient-to-r from-primary/5 to-transparent rounded-r-lg shadow-sm" data-testid="blockquote">
+        <div className="absolute left-3 top-5 text-4xl text-primary/20 font-serif leading-none">"</div>
+        <div className="text-foreground/90 italic">
           {children}
-        </blockquote>
-      );
-    },
+        </div>
+      </blockquote>
+    ),
     table: ({ children }: any) => (
-      <div className="overflow-x-auto my-10 rounded-xl border-2 border-border shadow-lg bg-card" data-testid="table-container">
-        <table className="min-w-full border-collapse">
+      <div className="overflow-x-auto my-8 rounded-xl border border-border shadow-md" data-testid="table-container">
+        <table className="min-w-full divide-y divide-border">
           {children}
         </table>
       </div>
     ),
     thead: ({ children }: any) => (
-      <thead className="bg-muted/50 backdrop-blur-sm">
+      <thead className="bg-gradient-to-r from-muted/60 to-muted/40">
         {children}
       </thead>
     ),
@@ -247,22 +219,22 @@ export default function LessonContent({ content }: LessonContentProps) {
         {children}
       </tbody>
     ),
-    tr: ({ children, ...props }: any) => (
-      <tr className="hover-elevate transition-all duration-200" {...props}>
+    tr: ({ children }: any) => (
+      <tr className="hover:bg-muted/40 transition-colors border-b border-border/50 last:border-b-0">
         {children}
       </tr>
     ),
     th: ({ children }: any) => (
-      <th className="px-6 py-4 text-left text-sm font-bold text-foreground uppercase tracking-wide border-b-2 border-border whitespace-nowrap">
+      <th className="px-6 py-4 text-left text-xs font-bold text-foreground uppercase tracking-wider border-b-2 border-primary/20">
         {children}
       </th>
     ),
     td: ({ children }: any) => (
-      <td className="px-6 py-4 text-sm text-foreground/90 whitespace-nowrap">
+      <td className="px-6 py-4 text-sm text-foreground/90 whitespace-normal">
         {children}
       </td>
     ),
-    a: ({ href, children }: any) => (
+    a: ({href, children}: any) => (
       <a 
         href={href} 
         className="text-primary hover:underline font-medium underline-offset-2"
