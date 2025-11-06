@@ -4380,6 +4380,157 @@ Keep notes on:
 You're now fully prepared to build amazing websites. Let's start creating! 🚀`
       }
     ]
+  },
+  {
+    id: "module-3",
+    number: 3,
+    title: "Building Static Websites",
+    description: "Master creating beautiful, fast static websites using no-code tools and AI agents",
+    difficulty: 'beginner' as const,
+    learningOutcomes: [
+      'Understand when to choose static websites',
+      'Build portfolios and landing pages',
+      'Deploy to Vercel and Netlify',
+      'Use AI for page design'
+    ],
+    project: 'Personal Portfolio Website',
+    lessons: [
+      {
+        id: "lesson-3-1",
+        title: "Static vs. Dynamic Websites",
+        duration: 15,
+        content: 'Learn when to choose static websites and understand their advantages over dynamic sites for portfolios, landing pages, and company websites.'
+      },
+      {
+        id: "lesson-3-2",
+        title: "Best No-Code Builders",
+        duration: 20,
+        content: 'Compare Framer, Webflow, Dorik, and other builders. Learn which tool is best for your project type and budget.'
+      },
+      {
+        id: "lesson-3-3",
+        title: "AI Prompt Examples for Page Design",
+        duration: 25,
+        content: 'Master writing effective prompts to generate beautiful page designs. Learn the formula for creating landing pages, portfolios, and more.'
+      },
+      {
+        id: "lesson-3-4",
+        title: "Deploying on Vercel or Netlify",
+        duration: 20,
+        content: 'Deploy your static site to production with one click. Learn custom domains, HTTPS, and automatic deployments.'
+      },
+      {
+        id: "lesson-3-5",
+        title: "Project: Personal Portfolio Website",
+        duration: 60,
+        content: 'Build and deploy a complete professional portfolio in under an hour using everything learned in this module.'
+      }
+    ]
+  },
+  {
+    id: "module-4",
+    number: 4,
+    title: "Building Dynamic Websites",
+    description: "Create data-driven websites with dynamic content using databases and APIs",
+    difficulty: 'intermediate' as const,
+    learningOutcomes: [
+      'Understand dynamic data and databases',
+      'Connect Airtable, Firebase, or Notion',
+      'Build blogs and product catalogs',
+      'Deploy dynamic sites to production'
+    ],
+    project: 'Blog or Product Listing Site',
+    lessons: [
+      {
+        id: "lesson-4-1",
+        title: "Introduction to Dynamic Data",
+        duration: 20,
+        content: 'Learn how dynamic websites work, understand databases and APIs, and identify when you need dynamic features.'
+      },
+      {
+        id: "lesson-4-2",
+        title: "Connecting a Database",
+        duration: 25,
+        content: 'Set up Airtable, Firebase, or Notion as your database. Learn to structure data and create collections.'
+      },
+      {
+        id: "lesson-4-3",
+        title: "Adding Dynamic Pages with AI",
+        duration: 30,
+        content: 'Use AI to generate pages that pull from your database. Create list views, detail pages, and filtered content.'
+      },
+      {
+        id: "lesson-4-4",
+        title: "Managing Data and Collections",
+        duration: 20,
+        content: 'Organize your content with categories, tags, and relationships. Learn data modeling best practices.'
+      },
+      {
+        id: "lesson-4-5",
+        title: "Deploying Dynamic Sites",
+        duration: 15,
+        content: 'Deploy your database-connected site to Vercel or Hostinger. Handle environment variables and API keys securely.'
+      },
+      {
+        id: "lesson-4-6",
+        title: "Project: Blog or Product Site",
+        duration: 90,
+        content: 'Build a complete blog with categories and search, or a product catalog with filtering. Deploy to production.'
+      }
+    ]
+  },
+  {
+    id: "module-5",
+    number: 5,
+    title: "Building Full Web Applications",
+    description: "Create interactive web apps with user authentication and complex functionality",
+    difficulty: 'intermediate' as const,
+    learningOutcomes: [
+      'Understand web application architecture',
+      'Add user authentication',
+      'Integrate APIs and databases',
+      'Use Replit/Lovable for backend logic',
+      'Deploy full-stack applications'
+    ],
+    project: 'To-Do App or Expense Tracker',
+    lessons: [
+      {
+        id: "lesson-5-1",
+        title: "What Makes a Web App Different",
+        duration: 20,
+        content: 'Learn the difference between websites and web applications. Understand frontend, backend, and database architecture.'
+      },
+      {
+        id: "lesson-5-2",
+        title: "Adding User Authentication",
+        duration: 30,
+        content: 'Implement secure user signup and login. Use Firebase Auth, Supabase, or built-in authentication systems.'
+      },
+      {
+        id: "lesson-5-3",
+        title: "Integrating APIs and Databases",
+        duration: 35,
+        content: 'Connect your app to external APIs and databases. Learn about REST APIs, authentication, and data fetching.'
+      },
+      {
+        id: "lesson-5-4",
+        title: "Using AI Agents for Logic and Backend",
+        duration: 40,
+        content: 'Use Replit Agent or Lovable to generate backend code, API routes, and business logic without coding.'
+      },
+      {
+        id: "lesson-5-5",
+        title: "Deploying Web Applications",
+        duration: 25,
+        content: 'Deploy full-stack apps to Vercel with database connections. Configure environment variables and monitor performance.'
+      },
+      {
+        id: "lesson-5-6",
+        title: "Project: To-Do App or Expense Tracker",
+        duration: 120,
+        content: 'Build a complete web application from scratch with user accounts, data persistence, and full CRUD functionality.'
+      }
+    ]
   }
 ];
 
