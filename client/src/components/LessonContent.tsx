@@ -45,15 +45,23 @@ function CodeBlock({ language, children }: { language: string; children: string 
       </div>
       <SyntaxHighlighter
         style={oneDark}
-        language={language}
+        language={language || 'text'}
         PreTag="div"
-        className="!rounded-lg !my-0 !bg-[#282c34]"
+        className="!rounded-lg !my-0"
         customStyle={{
           margin: 0,
           padding: '1.75rem',
           fontSize: '0.9375rem',
           lineHeight: '1.8',
           letterSpacing: '0.01em',
+          backgroundColor: '#282c34',
+          color: '#abb2bf',
+        }}
+        codeTagProps={{
+          style: {
+            color: '#abb2bf',
+            fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
+          }
         }}
       >
         {children}
