@@ -6,6 +6,11 @@ This is a learning management system (LMS) designed to teach AI-powered no-code 
 
 The course content is stored in a static data structure and displayed through an interactive interface featuring a collapsible sidebar navigation, markdown-based lesson content with syntax highlighting, progress tracking, and seamless lesson-to-lesson navigation.
 
+## Recent Changes
+
+**November 6, 2025:**
+- Fixed duplicate lesson title display issue: LessonContent component now accepts an optional `lessonTitle` prop and uses useRef to track and skip the first H1 element in markdown content when it matches the lesson title. This prevents double rendering of titles since the Lesson component already displays the title in its header.
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
