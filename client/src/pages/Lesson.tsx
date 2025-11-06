@@ -213,7 +213,7 @@ export default function Lesson() {
 
         <div className="mb-10 sm:mb-12 relative">
           <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/50 via-primary/20 to-transparent rounded-full hidden lg:block" />
-          <LessonContent content={lesson.content} />
+          <LessonContent content={lesson.content} lessonTitle={lesson.title} />
         </div>
 
         {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (

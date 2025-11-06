@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 
 interface LessonContentProps {
   content: string;
+  lessonTitle?: string;
 }
 
 function CodeBlock({ language, children }: { language: string; children: string }) {
@@ -165,7 +166,13 @@ function Callout({ type, children }: { type: 'note' | 'tip' | 'warning' | 'info'
   );
 }
 
-export default function LessonContent({ content }: LessonContentProps) {
+export default function LessonContent({ content, lessonTitle }: LessonContentProps) {
+  const firstH1EncounteredRef = useRef(false);
+  
+  useEffect(() => {
+    firstH1EncounteredRef.current = false;
+  }, [content]);
+  
   const components: Partial<Components> = {
     code({ className, children, ...props }: any) {
       const match = /language-(\w+)/.exec(className || '');
@@ -185,11 +192,22 @@ export default function LessonContent({ content }: LessonContentProps) {
         </CodeBlock>
       );
     },
-    h1: ({ children }: any) => (
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-10 sm:mt-12 md:mt-16 mb-5 sm:mb-6 md:mb-8 first:mt-0 tracking-tight text-foreground border-b-2 border-border pb-3 sm:pb-4 md:pb-5" data-testid="heading-h1">
-        {children}
-      </h1>
-    ),
+    h1: ({ children }: any) => {
+      const h1Text = String(children).trim();
+      
+      if (!firstH1EncounteredRef.current && lessonTitle && h1Text === lessonTitle) {
+        firstH1EncounteredRef.current = true;
+        return null;
+      }
+      
+      firstH1EncounteredRef.current = true;
+      
+      return (
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-10 sm:mt-12 md:mt-16 mb-5 sm:mb-6 md:mb-8 first:mt-0 tracking-tight text-foreground border-b-2 border-border pb-3 sm:pb-4 md:pb-5" data-testid="heading-h1">
+          {children}
+        </h1>
+      );
+    },
     h2: ({ children }: any) => (
       <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mt-10 sm:mt-12 md:mt-14 mb-4 sm:mb-5 md:mb-6 tracking-tight text-foreground scroll-mt-20 flex items-center gap-3" data-testid="heading-h2">
         <span className="w-1.5 h-8 bg-gradient-to-b from-primary to-primary/50 rounded-full" />
