@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -13,6 +13,23 @@ interface LessonContentProps {
 
 function CodeBlock({ language, children }: { language: string; children: string }) {
   const [copied, setCopied] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkTheme();
+    
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   const copyToClipboard = async () => {
     await navigator.clipboard.writeText(children);
@@ -62,22 +79,21 @@ function CodeBlock({ language, children }: { language: string; children: string 
         )}
         <div className="overflow-x-auto">
           <SyntaxHighlighter
-            style={oneDark}
+            style={isDark ? oneDark : oneLight}
             language={language || 'text'}
             PreTag="div"
-            className="!rounded-none !my-0"
+            className="!rounded-none !my-0 text-sm sm:text-base"
             customStyle={{
               margin: 0,
-              padding: window.innerWidth < 640 ? '1.25rem' : '2rem',
-              fontSize: window.innerWidth < 640 ? '0.8rem' : '0.95rem',
+              padding: '1.25rem',
               lineHeight: '1.8',
               letterSpacing: '0.015em',
-              backgroundColor: '#1e1e1e',
-              color: '#d4d4d4',
+              backgroundColor: isDark ? '#1e1e1e' : '#fafafa',
+              color: isDark ? '#d4d4d4' : '#383a42',
             }}
             codeTagProps={{
               style: {
-                color: '#d4d4d4',
+                color: isDark ? '#d4d4d4' : '#383a42',
                 fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
               }
             }}
@@ -170,7 +186,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       );
     },
     h1: ({ children }: any) => (
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-10 sm:mt-12 md:mt-16 mb-5 sm:mb-6 md:mb-8 first:mt-0 tracking-tight text-foreground border-b-2 border-gradient-to-r from-primary to-transparent pb-3 sm:pb-4 md:pb-5" data-testid="heading-h1">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-10 sm:mt-12 md:mt-16 mb-5 sm:mb-6 md:mb-8 first:mt-0 tracking-tight text-foreground border-b-2 border-border pb-3 sm:pb-4 md:pb-5" data-testid="heading-h1">
         {children}
       </h1>
     ),
@@ -190,20 +206,60 @@ export default function LessonContent({ content }: LessonContentProps) {
         {children}
       </h4>
     ),
-    p: ({ children }: any) => {
-      const text = String(children);
+    p: ({ children, node }: any) => {
+      const extractTextFromNode = (nodeOrText: any): string => {
+        if (typeof nodeOrText === 'string') return nodeOrText;
+        if (Array.isArray(nodeOrText)) {
+          return nodeOrText.map(extractTextFromNode).join('');
+        }
+        if (nodeOrText?.props?.children) {
+          return extractTextFromNode(nodeOrText.props.children);
+        }
+        return '';
+      };
+
+      const fullText = extractTextFromNode(children).trim();
       
-      if (text.startsWith('💡 Tip:') || text.includes('**Tip:**')) {
-        return <Callout type="tip">{text.replace(/^💡\s*Tip:\s*/, '').replace(/\*\*Tip:\*\*\s*/, '')}</Callout>;
+      let calloutType: 'tip' | 'warning' | 'note' | 'info' | null = null;
+      
+      if (fullText.startsWith('💡 Tip:') || fullText.startsWith('Tip:')) {
+        calloutType = 'tip';
+      } else if (fullText.startsWith('⚠️ Warning:') || fullText.startsWith('Warning:')) {
+        calloutType = 'warning';
+      } else if (fullText.startsWith('📝 Note:') || fullText.startsWith('Note:')) {
+        calloutType = 'note';
+      } else if (fullText.startsWith('ℹ️ Info:') || fullText.startsWith('Info:')) {
+        calloutType = 'info';
       }
-      if (text.startsWith('⚠️ Warning:') || text.includes('**Warning:**')) {
-        return <Callout type="warning">{text.replace(/^⚠️\s*Warning:\s*/, '').replace(/\*\*Warning:\*\*\s*/, '')}</Callout>;
-      }
-      if (text.startsWith('📝 Note:') || text.includes('**Note:**')) {
-        return <Callout type="note">{text.replace(/^📝\s*Note:\s*/, '').replace(/\*\*Note:\*\*\s*/, '')}</Callout>;
-      }
-      if (text.startsWith('ℹ️ Info:') || text.includes('**Info:**')) {
-        return <Callout type="info">{text.replace(/^ℹ️\s*Info:\s*/, '').replace(/\*\*Info:\*\*\s*/, '')}</Callout>;
+      
+      if (calloutType) {
+        const removeIndicator = (child: any, isFirst: boolean = true): any => {
+          if (typeof child === 'string') {
+            if (isFirst) {
+              return child
+                .replace(/^💡\s*Tip:\s*/, '')
+                .replace(/^⚠️\s*Warning:\s*/, '')
+                .replace(/^📝\s*Note:\s*/, '')
+                .replace(/^ℹ️\s*Info:\s*/, '')
+                .replace(/^Tip:\s*/, '')
+                .replace(/^Warning:\s*/, '')
+                .replace(/^Note:\s*/, '')
+                .replace(/^Info:\s*/, '');
+            }
+            return child;
+          }
+          if (Array.isArray(child)) {
+            return child.map((c, i) => removeIndicator(c, i === 0));
+          }
+          if (child?.props?.children) {
+            const newChildren = removeIndicator(child.props.children, isFirst);
+            return { ...child, props: { ...child.props, children: newChildren } };
+          }
+          return child;
+        };
+
+        const cleanedChildren = removeIndicator(children);
+        return <Callout type={calloutType}>{cleanedChildren}</Callout>;
       }
       
       return (
@@ -263,7 +319,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       );
     },
     table: ({ children }: any) => (
-      <div className="overflow-x-auto my-8 sm:my-10 md:my-12 rounded-xl sm:rounded-2xl border-2 border-border shadow-2xl bg-card -mx-4 sm:mx-0" data-testid="table-container">
+      <div className="w-full overflow-x-auto my-8 sm:my-10 md:my-12 rounded-xl sm:rounded-2xl border-2 border-border shadow-2xl bg-card" data-testid="table-container">
         <table className="min-w-full border-collapse">
           {children}
         </table>
