@@ -223,8 +223,7 @@ AI agents are sophisticated programs powered by large language models (like GPT-
 - You're building static or simple dynamic sites
 
 **Example Prompt**:
-
-\`\`\`markdown
+\`\`\`
 Create a landing page for a fitness app with the following sections:
 
 1. Hero section with an embedded workout video
@@ -256,8 +255,7 @@ Design requirements:
 - Require database integration
 
 **Example Prompt**:
-
-\`\`\`javascript
+\`\`\`
 Build a task management app with user authentication, 
 the ability to create, edit, and delete tasks, and 
 categorize them by project. Use React for frontend 
@@ -281,8 +279,7 @@ and Express for backend.
 - Require advanced customization
 
 **Example Prompt**:
-
-\`\`\`javascript
+\`\`\`
 Add a real-time chat feature to this React app using 
 WebSockets. Include typing indicators, message history, 
 and user presence indicators.
