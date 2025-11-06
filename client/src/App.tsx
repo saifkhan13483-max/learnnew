@@ -7,6 +7,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import CourseSidebar from "@/components/CourseSidebar";
 import Home from "@/pages/Home";
 import Lesson from "@/pages/Lesson";
+import ToolComparison from "@/pages/ToolComparison";
 import NotFound from "@/pages/not-found";
 import { Menu, GraduationCap } from "lucide-react";
 
@@ -14,6 +15,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/tool-comparison" component={ToolComparison} />
       <Route path="/module/:moduleId/lesson/:lessonId" component={Lesson} />
       <Route component={NotFound} />
     </Switch>

@@ -11,7 +11,7 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, CheckCircle2, Circle, GraduationCap, Home, Award } from "lucide-react";
+import { ChevronDown, CheckCircle2, Circle, GraduationCap, Home, Award, Table } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { courseModules } from "@shared/courseData";
 import { useState, useEffect } from "react";
@@ -89,6 +89,14 @@ export default function CourseSidebar() {
                   <Link href="/" data-testid="link-course-home">
                     <Home className="w-4 h-4" />
                     <span>Course Home</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={location === "/tool-comparison"}>
+                  <Link href="/tool-comparison" data-testid="link-tool-comparison">
+                    <Table className="w-4 h-4" />
+                    <span>Tool Comparison</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
