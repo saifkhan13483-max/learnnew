@@ -113,11 +113,66 @@ const getCapabilityColor = (level: string) => {
   }
 };
 
+interface SpeedComparison {
+  task: string;
+  traditional: string;
+  withAI: string;
+  timeSaved: string;
+  note?: string;
+}
+
+const speedComparisons: SpeedComparison[] = [
+  {
+    task: "Setup project",
+    traditional: "30 min",
+    withAI: "1 min",
+    timeSaved: "97%"
+  },
+  {
+    task: "Create homepage",
+    traditional: "4 hours",
+    withAI: "5 min",
+    timeSaved: "98%"
+  },
+  {
+    task: "Add contact form",
+    traditional: "2 hours",
+    withAI: "2 min",
+    timeSaved: "98%"
+  },
+  {
+    task: "Make responsive",
+    traditional: "4 hours",
+    withAI: "0 min*",
+    timeSaved: "100%",
+    note: "*Already responsive by default"
+  },
+  {
+    task: "Deploy",
+    traditional: "2 hours",
+    withAI: "5 min",
+    timeSaved: "96%"
+  },
+  {
+    task: "Add feature",
+    traditional: "4-8 hours",
+    withAI: "5-15 min",
+    timeSaved: "95%+"
+  }
+];
+
+const getTimeSavedColor = (percentage: string) => {
+  const value = parseInt(percentage);
+  if (value >= 98) return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
+  if (value >= 95) return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
+  return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200";
+};
+
 export default function ToolComparison() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="mb-8">
+      <div className="max-w-7xl mx-auto px-6 py-12 space-y-12">
+        <div>
           <h1 className="text-3xl md:text-4xl font-bold mb-3" data-testid="heading-tool-comparison">
             No-Code Tool Comparison
           </h1>
@@ -125,6 +180,52 @@ export default function ToolComparison() {
             Compare popular no-code platforms and find the best tool for your project
           </p>
         </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle data-testid="heading-speed-comparison">Speed Comparison Chart</CardTitle>
+            <CardDescription>
+              See how AI-powered no-code tools dramatically reduce development time
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="font-semibold" data-testid="header-task">Task</TableHead>
+                    <TableHead className="font-semibold" data-testid="header-traditional">Traditional</TableHead>
+                    <TableHead className="font-semibold" data-testid="header-with-ai">With AI</TableHead>
+                    <TableHead className="font-semibold" data-testid="header-time-saved">Time Saved</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {speedComparisons.map((comparison, index) => (
+                    <TableRow key={comparison.task} data-testid={`row-speed-${index}`}>
+                      <TableCell className="font-medium" data-testid={`cell-task-${index}`}>
+                        {comparison.task}
+                      </TableCell>
+                      <TableCell data-testid={`cell-traditional-${index}`}>
+                        {comparison.traditional}
+                      </TableCell>
+                      <TableCell data-testid={`cell-with-ai-${index}`}>
+                        {comparison.withAI}
+                      </TableCell>
+                      <TableCell data-testid={`cell-time-saved-${index}`}>
+                        <Badge variant="secondary" className={getTimeSavedColor(comparison.timeSaved)}>
+                          {comparison.timeSaved}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+            <p className="text-sm text-muted-foreground mt-4" data-testid="text-speed-note">
+              *Already responsive by default
+            </p>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>
