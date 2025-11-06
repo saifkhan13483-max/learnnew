@@ -50,9 +50,10 @@ function CodeBlock({ language, children }: { language: string; children: string 
         className="!rounded-lg !my-0 !bg-[#282c34]"
         customStyle={{
           margin: 0,
-          padding: '1.5rem',
-          fontSize: '0.875rem',
-          lineHeight: '1.5',
+          padding: '1.75rem',
+          fontSize: '0.9375rem',
+          lineHeight: '1.8',
+          letterSpacing: '0.01em',
         }}
       >
         {children}
