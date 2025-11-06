@@ -82,7 +82,7 @@ export default function Lesson() {
 
         {/* Lesson Header */}
         <div className="mb-10">
-          <div className="flex flex-wrap items-center gap-2 mb-4 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-2 mb-4 text-sm text-muted-foreground font-semibold">
             <span>Module {module.number}</span>
             <span>·</span>
             <span data-testid="badge-duration">
