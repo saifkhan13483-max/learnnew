@@ -47,19 +47,19 @@ function CodeBlock({ language, children }: { language: string; children: string 
         style={oneDark}
         language={language || 'text'}
         PreTag="div"
-        className="!rounded-lg !my-0"
+        className="!rounded-xl !my-0 shadow-lg"
         customStyle={{
           margin: 0,
-          padding: '1.75rem',
-          fontSize: '0.9375rem',
-          lineHeight: '1.8',
-          letterSpacing: '0.01em',
-          backgroundColor: '#282c34',
-          color: '#abb2bf',
+          padding: '2rem',
+          fontSize: '1rem',
+          lineHeight: '2',
+          letterSpacing: '0.015em',
+          backgroundColor: '#1e1e1e',
+          color: '#d4d4d4',
         }}
         codeTagProps={{
           style: {
-            color: '#abb2bf',
+            color: '#d4d4d4',
             fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
           }
         }}
@@ -102,12 +102,12 @@ function Callout({ type, children }: { type: 'note' | 'tip' | 'warning' | 'info'
   const Icon = config.icon;
 
   return (
-    <div className={`my-6 p-4 rounded-lg border-2 ${config.className}`} data-testid={`callout-${type}`}>
-      <div className="flex gap-3">
-        <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${config.iconClassName}`} />
+    <div className={`my-8 p-5 rounded-xl border-2 ${config.className} shadow-sm`} data-testid={`callout-${type}`}>
+      <div className="flex gap-4">
+        <Icon className={`w-6 h-6 mt-0.5 flex-shrink-0 ${config.iconClassName}`} />
         <div className="flex-1">
-          <div className="font-semibold mb-1 text-foreground">{config.title}</div>
-          <div className="text-sm text-foreground/90 leading-relaxed">
+          <div className="font-bold mb-2 text-foreground text-base">{config.title}</div>
+          <div className="text-[15px] text-foreground/90 leading-loose">
             {children}
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       
       if (isInline) {
         return (
-          <code className="bg-muted px-1.5 py-0.5 rounded-md text-sm font-mono text-foreground border border-border/50" {...props}>
+          <code className="bg-muted px-2 py-1 rounded-md text-[15px] font-mono text-foreground border border-border/50 font-medium" {...props}>
             {children}
           </code>
         );
@@ -174,18 +174,18 @@ export default function LessonContent({ content }: LessonContentProps) {
       }
       
       return (
-        <p className="leading-relaxed mb-5 text-foreground/90">
+        <p className="leading-loose mb-6 text-foreground/90 text-[16px]">
           {children}
         </p>
       );
     },
     ul: ({ children }: any) => (
-      <ul className="space-y-3 mb-8 ml-0 list-none">
+      <ul className="space-y-3 mb-10 ml-0 list-none">
         {children}
       </ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="space-y-4 mb-8 ml-0 [counter-reset:list-counter] list-none">
+      <ol className="space-y-5 mb-10 ml-0 [counter-reset:list-counter] list-none">
         {children}
       </ol>
     ),
@@ -194,16 +194,16 @@ export default function LessonContent({ content }: LessonContentProps) {
       
       if (isOrderedList) {
         return (
-          <li className="text-foreground/95 leading-relaxed flex items-start gap-4 py-2.5 [counter-increment:list-counter] before:content-[counter(list-counter)] before:flex-shrink-0 before:w-9 before:h-9 before:rounded-full before:bg-primary/10 before:text-primary before:font-bold before:flex before:items-center before:justify-center before:text-base before:border before:border-primary/20">
-            <span className="flex-1 pt-1.5 text-[15px] leading-relaxed">{children}</span>
+          <li className="text-foreground/95 leading-loose flex items-start gap-5 py-3 [counter-increment:list-counter] before:content-[counter(list-counter)] before:flex-shrink-0 before:w-10 before:h-10 before:rounded-full before:bg-primary/10 before:text-primary before:font-bold before:flex before:items-center before:justify-center before:text-base before:border-2 before:border-primary/20">
+            <span className="flex-1 pt-1.5 text-[16px] leading-loose">{children}</span>
           </li>
         );
       }
       
       return (
-        <li className="text-foreground/90 leading-relaxed flex items-start gap-3 py-1">
-          <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2.5"></span>
-          <span className="flex-1">{children}</span>
+        <li className="text-foreground/90 leading-loose flex items-start gap-4 py-2">
+          <span className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-2.5"></span>
+          <span className="flex-1 text-[16px]">{children}</span>
         </li>
       );
     },
@@ -225,7 +225,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       }
       
       return (
-        <blockquote className="border-l-4 border-primary pl-5 py-3 my-6 bg-muted/50 rounded-r-lg italic">
+        <blockquote className="border-l-4 border-primary pl-6 py-4 my-8 bg-muted/50 rounded-r-xl italic text-[16px] leading-loose">
           {children}
         </blockquote>
       );
@@ -274,7 +274,7 @@ export default function LessonContent({ content }: LessonContentProps) {
       </a>
     ),
     strong: ({ children }: any) => (
-      <strong className="font-bold text-foreground">
+      <strong className="font-bold text-foreground font-semibold">
         {children}
       </strong>
     ),
