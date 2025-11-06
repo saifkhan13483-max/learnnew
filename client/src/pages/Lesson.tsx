@@ -64,8 +64,8 @@ export default function Lesson() {
   const lessonIndex = module.lessons.findIndex(l => l.id === lessonId);
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-3xl mx-auto px-6 py-8 md:py-12">
+    <div className="bg-background">
+      <div className="max-w-5xl mx-auto px-6 py-8 md:py-12">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm mb-8" data-testid="breadcrumb">
           <Link 
