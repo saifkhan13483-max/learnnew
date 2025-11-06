@@ -180,21 +180,33 @@ export default function LessonContent({ content }: LessonContentProps) {
       );
     },
     ul: ({ children }: any) => (
-      <ul className="space-y-2 mb-6 ml-6">
+      <ul className="space-y-3 mb-8 ml-0 list-none">
         {children}
       </ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="space-y-2 mb-6 ml-6">
+      <ol className="space-y-4 mb-8 ml-0 [counter-reset:list-counter] list-none">
         {children}
       </ol>
     ),
-    li: ({ children }: any) => (
-      <li className="text-foreground/90 leading-relaxed flex">
-        <span className="mr-2 text-primary font-bold">•</span>
-        <span className="flex-1">{children}</span>
-      </li>
-    ),
+    li: ({ children, node }: any) => {
+      const isOrderedList = node?.parent?.tagName === 'ol';
+      
+      if (isOrderedList) {
+        return (
+          <li className="text-foreground/95 leading-relaxed flex items-start gap-4 py-2.5 [counter-increment:list-counter] before:content-[counter(list-counter)] before:flex-shrink-0 before:w-9 before:h-9 before:rounded-full before:bg-primary/10 before:text-primary before:font-bold before:flex before:items-center before:justify-center before:text-base before:border before:border-primary/20">
+            <span className="flex-1 pt-1.5 text-[15px] leading-relaxed">{children}</span>
+          </li>
+        );
+      }
+      
+      return (
+        <li className="text-foreground/90 leading-relaxed flex items-start gap-3 py-1">
+          <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2.5"></span>
+          <span className="flex-1">{children}</span>
+        </li>
+      );
+    },
     blockquote: ({ children }: any) => {
       // Enhanced blockquote detection for callouts
       const childrenString = String(children);

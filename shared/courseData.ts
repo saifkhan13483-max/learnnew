@@ -339,21 +339,13 @@ The AI helps:
 
 ## The AI Development Workflow
 
-\`\`\`
-1. Describe what you want to build
-   ↓
-2. AI generates initial version
-   ↓
-3. Review and test
-   ↓
-4. Request refinements
-   ↓
-5. AI updates the project
-   ↓
-6. Repeat until satisfied
-   ↓
-7. Deploy with one click
-\`\`\`
+1. **Describe what you want to build** - Write a clear description of your project and requirements
+2. **AI generates initial version** - The AI creates your complete website in minutes
+3. **Review and test** - Check the generated site and try out all features
+4. **Request refinements** - Ask for changes, improvements, or new features
+5. **AI updates the project** - Watch as changes are applied instantly
+6. **Repeat until satisfied** - Continue refining until it's exactly what you want
+7. **Deploy with one click** - Launch your website live to the world
 
 ## Best Practices for Working with AI Agents
 
