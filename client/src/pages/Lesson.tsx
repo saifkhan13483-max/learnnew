@@ -35,8 +35,19 @@ export default function Lesson() {
     return <NotFound />;
   }
 
-  const next = getNextLesson(moduleId, lessonId);
-  const previous = getPreviousLesson(moduleId, lessonId);
+  const nextData = getNextLesson(moduleId, lessonId);
+  const previousData = getPreviousLesson(moduleId, lessonId);
+  
+  const next = nextData ? {
+    module: getModuleById(nextData.moduleId)!,
+    lesson: getLessonById(nextData.moduleId, nextData.lessonId)!
+  } : null;
+  
+  const previous = previousData ? {
+    module: getModuleById(previousData.moduleId)!,
+    lesson: getLessonById(previousData.moduleId, previousData.lessonId)!
+  } : null;
+  
   const isCompleted = completedLessons.has(lessonId);
 
   const toggleComplete = () => {
