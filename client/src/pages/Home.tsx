@@ -48,11 +48,17 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href={`/module/${courseModules[0].id}/lesson/${courseModules[0].lessons[0].id}`}>
-                <Button size="lg" className="px-6 h-11" data-testid="button-start-learning">
-                  Start Learning
+              {courseModules.length > 0 && courseModules[0].lessons.length > 0 ? (
+                <Link href={`/module/${courseModules[0].id}/lesson/${courseModules[0].lessons[0].id}`}>
+                  <Button size="lg" className="px-6 h-11" data-testid="button-start-learning">
+                    Start Learning
+                  </Button>
+                </Link>
+              ) : (
+                <Button size="lg" className="px-6 h-11" disabled data-testid="button-start-learning">
+                  No Courses Available
                 </Button>
-              </Link>
+              )}
               <Button size="lg" variant="outline" className="px-6 h-11" asChild data-testid="button-view-modules">
                 <a href="#modules">View Curriculum</a>
               </Button>
