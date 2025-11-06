@@ -209,34 +209,34 @@ export default function LessonContent({ content }: LessonContentProps) {
       );
     },
     table: ({ children }: any) => (
-      <div className="overflow-x-auto my-8 rounded-lg border border-border shadow-sm" data-testid="table-container">
+      <div className="overflow-x-auto my-10 rounded-xl border-2 border-border shadow-lg bg-card" data-testid="table-container">
         <table className="min-w-full border-collapse">
           {children}
         </table>
       </div>
     ),
     thead: ({ children }: any) => (
-      <thead className="bg-muted/80">
+      <thead className="bg-muted/50 backdrop-blur-sm">
         {children}
       </thead>
     ),
     tbody: ({ children }: any) => (
-      <tbody className="divide-y divide-border">
+      <tbody className="divide-y divide-border/50 bg-background/50">
         {children}
       </tbody>
     ),
     tr: ({ children, ...props }: any) => (
-      <tr className="hover-elevate transition-colors" {...props}>
+      <tr className="hover-elevate transition-all duration-200" {...props}>
         {children}
       </tr>
     ),
     th: ({ children }: any) => (
-      <th className="px-6 py-4 text-left font-semibold text-foreground border-b-2 border-border">
+      <th className="px-6 py-4 text-left text-sm font-bold text-foreground uppercase tracking-wide border-b-2 border-border whitespace-nowrap">
         {children}
       </th>
     ),
     td: ({ children }: any) => (
-      <td className="px-6 py-4 text-foreground/90">
+      <td className="px-6 py-4 text-sm text-foreground/90 whitespace-nowrap">
         {children}
       </td>
     ),
