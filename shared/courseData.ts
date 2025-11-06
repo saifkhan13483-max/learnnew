@@ -193,74 +193,228 @@ No-code development democratizes website creation. With AI agents and modern too
         ],
         content: `# Role of AI Agents in Web Development
 
-AI agents have revolutionized development by enabling anyone to build sophisticated applications through natural language.
+AI agents are intelligent assistants that understand your requirements in plain English and generate functional code, complete designs, and entire websites. They're revolutionizing how we build for the web.
 
-#### What Are AI Agents?
+## What Are AI Agents?
 
-AI development agents are intelligent assistants that:
-- Understand natural language instructions
-- Generate code and designs
-- Debug and optimize applications
-- Provide real-time suggestions
-- Learn from context and patterns
+AI agents are sophisticated programs powered by large language models (like GPT-4) that have been trained on millions of websites, code repositories, and design patterns. They can:
 
-#### Popular AI Development Platforms
+- **Understand Context**: Read your descriptions and existing code to understand what you're building
+- **Generate Solutions**: Create complete features, pages, or entire applications
+- **Learn and Adapt**: Improve their output based on your feedback
+- **Debug Issues**: Identify and fix problems in generated code
+- **Suggest Improvements**: Recommend best practices and optimizations
 
-**Lovable (formerly GPT Engineer)**
-- Generates full-stack applications from text descriptions
-- Handles frontend, backend, and database setup
-- Iterative development through conversation
-- Export to standard code
+## Popular AI Development Platforms
 
-**Replit AI**
-- Integrated directly in the Replit IDE
-- Context-aware code completion
-- Explains code and suggests improvements
-- Helps debug errors in real-time
+### Lovable (lovable.dev)
+**Best for**: Rapid prototyping and design-first projects
 
-**Cursor**
-- AI-first code editor
-- Natural language editing
-- Codebase-aware suggestions
-- Multiple AI model support
+**Strengths**:
+- Generates beautiful, modern designs instantly
+- Excellent for landing pages and marketing sites
+- Real-time collaboration features
+- One-click deployment
+- Built-in responsive design
 
-**GitHub Copilot**
-- Code completion and generation
-- Works across multiple editors
+**Use When**:
+- You need a polished website quickly
+- Design is a top priority
+- You're building static or simple dynamic sites
+
+**Example Prompt**:
+\`\`\`
+Create a landing page for a fitness app with the following sections:
+
+1. Hero section with an embedded workout video
+2. Three benefit cards highlighting key features
+3. Pricing table showing subscription options
+4. Contact form for user inquiries
+
+Design requirements:
+- Use energetic, vibrant colors
+- Modern, clean design aesthetic
+- Mobile-responsive layout
+\`\`\`
+
+### Replit (replit.com)
+**Best for**: Full-stack applications and learning
+
+**Strengths**:
+- Complete development environment in browser
+- AI pair programming with Ghostwriter
 - Supports all major frameworks
+- Instant deployment capabilities
+- Built-in database support
+- Collaborative coding
 
-#### How AI Agents Work
+**Use When**:
+- Building complex web applications
+- Need backend functionality
+- Want to learn while building
+- Require database integration
 
-1. **Understanding Context**: AI reads your prompts and existing code
-2. **Generating Solutions**: Creates code, designs, or full features
-3. **Iterative Refinement**: Improves based on your feedback
-4. **Deployment**: Helps publish your finished product
-
-#### Example Prompt
-
-Here's a well-structured prompt for AI agents:
-
+**Example Prompt**:
 \`\`\`
-Create a landing page for a fitness app with a hero section
-featuring a workout video, three benefit cards, pricing table,
-and contact form. Use energetic colors and modern design.
+Build a task management app with user authentication, 
+the ability to create, edit, and delete tasks, and 
+categorize them by project. Use React for frontend 
+and Express for backend.
 \`\`\`
 
-**What Makes This Prompt Effective:**
-- **Clear objective**: Landing page for a specific purpose
-- **Specific components**: Lists exactly what sections to include
-- **Design guidance**: Mentions color scheme and style preferences
-- **Context**: Indicates it's for a fitness app
+### Cursor (cursor.sh)
+**Best for**: Advanced developers and complex projects
 
-#### Best Practices for AI Prompts
+**Strengths**:
+- AI-powered VS Code alternative
+- Context-aware code suggestions
+- Understands entire codebase
+- Supports all programming languages
+- Terminal integration
 
-- **Be specific** in your requests
-- **Provide context** and examples
-- **Iterate and refine** based on results
-- **Test frequently** during development
+**Use When**:
+- Building enterprise-level applications
+- Need fine-grained control
+- Working with existing codebases
+- Require advanced customization
 
-💡 **Tip:** AI agents are your development partners, not replacements for creativity and planning. Use them to accelerate implementation while you focus on strategy and user experience.
-`
+**Example Prompt**:
+\`\`\`
+Add a real-time chat feature to this React app using 
+WebSockets. Include typing indicators, message history, 
+and user presence indicators.
+\`\`\`
+
+### Bolt.new
+**Best for**: Quick prototypes and experiments
+
+**Strengths**:
+- Instant project creation
+- No account required to start
+- Fast iteration cycles
+- Share projects easily
+
+**Use When**:
+- Testing ideas quickly
+- Learning new frameworks
+- Creating demos
+
+### v0.dev (by Vercel)
+**Best for**: UI component generation
+
+**Strengths**:
+- Generates React components from descriptions
+- Uses shadcn/ui components
+- Production-ready code
+- Copy-paste into your project
+
+**Use When**:
+- Need specific UI components
+- Building with React/Next.js
+- Want Tailwind CSS styling
+
+## How AI Agents Work
+
+### 1. Understanding Context
+The AI reads:
+- Your written instructions (prompts)
+- Existing code in your project
+- Industry best practices
+- Modern design patterns
+
+### 2. Generating Solutions
+The AI creates:
+- HTML structure and content
+- CSS styling and layouts
+- JavaScript functionality
+- Backend API endpoints
+- Database schemas
+- Complete file structures
+
+### 3. Iterative Refinement
+You can:
+- Request changes in plain English
+- Ask for alternatives
+- Fix bugs by describing the issue
+- Add new features incrementally
+
+### 4. Deployment Assistance
+The AI helps:
+- Configure deployment settings
+- Set up environment variables
+- Optimize for production
+- Fix deployment errors
+
+## The AI Development Workflow
+
+1. **Describe what you want to build** - Write a clear description of your project and requirements
+2. **AI generates initial version** - The AI creates your complete website in minutes
+3. **Review and test** - Check the generated site and try out all features
+4. **Request refinements** - Ask for changes, improvements, or new features
+5. **AI updates the project** - Watch as changes are applied instantly
+6. **Repeat until satisfied** - Continue refining until it's exactly what you want
+7. **Deploy with one click** - Launch your website live to the world
+
+## Best Practices for Working with AI Agents
+
+### Be Specific
+**Bad**: "Make a website"
+**Good**: "Create a portfolio website with a hero section, about me page, project gallery with filtering by category, and a contact form. Use a blue color scheme."
+
+### Provide Context
+**Bad**: "Add authentication"
+**Good**: "Add user authentication with email and password. Users should be able to sign up, log in, reset passwords, and access a protected dashboard."
+
+### Iterate Incrementally
+**Bad**: Requesting everything at once and getting overwhelmed
+**Good**: Start with core features, test them, then add more functionality
+
+### Test Frequently
+- Review generated code regularly
+- Test functionality as it's built
+- Catch issues early before they compound
+
+### Learn from Output
+- Review the code AI generates
+- Understand the patterns being used
+- Build your mental model of how things work
+
+## Common Use Cases
+
+### Quick Prototyping
+Prompt: "Create a mockup of a recipe sharing website"
+Time: 5-10 minutes
+
+### Feature Addition
+Prompt: "Add dark mode toggle to this website"
+Time: 2-5 minutes
+
+### Bug Fixing
+Prompt: "The contact form isn't submitting. The email field validation seems broken."
+Time: 1-3 minutes
+
+### Redesign
+Prompt: "Redesign the homepage with a more modern, minimalist aesthetic"
+Time: 10-15 minutes
+
+## Limitations to Understand
+
+AI agents are powerful but have limits:
+
+1. **Complex Business Logic**: May need human guidance for intricate workflows
+2. **Security-Critical Code**: Always review authentication and payment code
+3. **Performance Optimization**: May need manual tuning for high-traffic sites
+4. **Unique Designs**: Work best with common patterns; truly unique designs may need iteration
+
+## Key Takeaway
+
+AI agents are your development partners, not replacements for creativity and planning. They handle the technical implementation while you focus on:
+- Defining what to build
+- Ensuring it meets user needs
+- Making design decisions
+- Testing and refining
+
+The best results come from clear communication with the AI, iterative refinement, and understanding your project's goals.`
       },
       {
         id: "lesson-1-3",
@@ -515,25 +669,25 @@ The no-code ecosystem offers specialized tools for different types of projects. 
 
 ### Decision Framework
 
-**For Static Websites**:
+**For Static Websites**: 
 → Framer (design priority) or Webflow (SEO/content priority)
 
-**For Dynamic Websites**:
+**For Dynamic Websites**: 
 → Webflow (with CMS) or Softr + Airtable
 
-**For Web Applications**:
+**For Web Applications**: 
 → Bubble (complex logic) or Replit/Lovable (with code)
 
-**For Forums**:
+**For Forums**: 
 → Discourse (specialized) or Bubble (custom)
 
-**For Social Platforms**:
+**For Social Platforms**: 
 → Bubble or custom code (Replit)
 
-**For Membership Sites**:
+**For Membership Sites**: 
 → Webflow + Memberstack or WordPress + Paid Memberships Pro
 
-**For Directories**:
+**For Directories**: 
 → Softr + Airtable or Webflow + CMS
 
 ---
@@ -725,7 +879,7 @@ AI makes updates in seconds.
 ### Step 4: Deploy (5-10 minutes)
 One-click deployment to:
 - Vercel
-- Netlify
+- Netlify  
 - Replit hosting
 
 Automatic SSL, CDN, and optimization included.
@@ -754,7 +908,7 @@ Automatic SSL, CDN, and optimization included.
 **Prompt**:
 \`\`\`
 Create a portfolio website for a UX designer with:
-- Hero section with animated name
+- Animated hero section with my name and title
 - About section with photo and bio
 - Case study cards for 6 projects with hover effects
 - Skills section with icons
@@ -966,7 +1120,7 @@ Click deploy button → Live website in 5 minutes
 ## Common Mistakes & How to Avoid Them
 
 ### Mistake 1: Vague Prompts
-❌ "Make a website"
+❌ "Make me a website"
 ✅ "Create a portfolio website for a graphic designer with project showcase, about page, and contact form"
 
 ### Mistake 2: Requesting Everything at Once
@@ -1007,11 +1161,11 @@ AI has fundamentally changed the equation:
 
 The best results come from:
 1. **Clear, specific prompts**
-5. **Iterative refinement**
+2. **Iterative refinement**
 3. **Understanding what you want to build**
 4. **Testing and providing feedback**
 
-You don't need to be a programmer anymore—you need to be a communicator and product thinker. AI handles the technical implementation while you focus on creating value for users.`
+You don't need to be a programmer anymore—you need to be a good communicator and product thinker. AI handles the technical implementation while you focus on creating value for users.`
       },
       {
         id: "lesson-1-5",
@@ -1485,7 +1639,7 @@ Everything you need to start building professional websites is ready. Let's begi
 
 **Action Items**:
 - [ ] Create all required accounts
-- [ ] Verify email addresses
+- [ ] Verify email addresses  
 - [ ] Try creating a test project
 - [ ] Deploy a "Hello World" site
 - [ ] Bookmark this course
