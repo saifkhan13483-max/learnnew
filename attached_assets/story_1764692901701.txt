@@ -4,7 +4,7 @@ MAIN CHARACTERS
 
 Hero (Jake Rivers)
 Age: 17
-Gender: Male
+Gender: Male (not boy, a men)
 Skin Tone: Fair with light tan
 Height: 5'9"
 Build: Athletic, lean teenager
@@ -44,7 +44,7 @@ Art Style: 2D Semi-Realistic Cartoon Illustration, masculine features, protectiv
 
 Best Friend (Maya Chen)
 Age: 17
-Gender: Female
+Gender: Female (not girl, a woman)
 Skin Tone: Light olive, Asian features
 Height: 5'5"
 Build: Petite, athletic
