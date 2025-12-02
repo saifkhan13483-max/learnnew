@@ -1,0 +1,61 @@
+Generate a sequence of 10 cinematic illustrations for Scenes 1-10, adhering strictly to the following specifications:
+
+Visual Consistency Requirements:
+
+Art Style: 2D Semi-Realistic Cartoon Illustration with detailed shading, expressive character features, and realistic proportions
+Maintain exact character appearances across all scenes (refer to CHARACTER REFERENCE SHEET)
+Preserve consistent lighting atmosphere: moody evening transitioning to night with rain
+Use uniform color grading: desaturated urban tones with dramatic contrast
+Character Specifications for Scenes 1-10:
+
+Jake Rivers (17-year-old male protagonist):
+
+Fair skin with light tan, athletic lean build (5'9")
+Dark brown messy hair with slight wave
+Sharp grey-blue eyes, strong jawline, slight stubble
+Dark grey hoodie, black jeans, white sneakers, silver watch (left wrist)
+Smartphone with visible cracked screen
+Mr. Patterson (elderly witness):
+
+Pale weathered skin, thin frail build (5'7")
+White thinning hair, watery blue frightened eyes
+Brown cardigan, plaid shirt, grey pants
+Black leather wallet with distinctive gold emblem
+Scene-by-Scene Visual Direction:
+
+Scene 1: Wide shot of Jake walking alone on rain-slicked urban sidewalk at dusk, basketball practice bag over shoulder, street lights beginning to glow, atmospheric rain beginning
+
+Scene 2: Dynamic medium shot capturing Jake's startled reaction, head turned toward off-screen sound, rain intensifying, motion blur suggesting sudden tire screech
+
+Scene 3: Low-angle dramatic shot of Jake discovering Mr. Patterson collapsed in shadowy alley, wet brick walls, trash bins visible, emergency lighting beginning to reflect
+
+Scene 4: Extreme close-up of Mr. Patterson's weathered face, lips forming "Marcus Stone," Jake leaning in close, rain droplets on both characters, shallow depth of field
+
+Scene 5: Medium shot of Jake crouched beside Mr. Patterson, head turned over shoulder toward distant siren sounds, tense body language, rain falling heavier
+
+Scene 6: Over-the-shoulder shot from Jake's perspective showing approaching emergency vehicle lights (red and blue) reflecting off wet brick alley walls, creating dramatic light patterns
+
+Scene 7: Wide shot establishing scene: unconscious Mr. Patterson in foreground, black wallet on wet ground beside him, Jake standing with conflicted expression, emergency lights growing brighter
+
+Scene 8: Close-up of Jake's smartphone screen displaying "911" with cracked screen texture visible, emergency vehicle headlights creating dramatic backlight, rain droplets on phone surface
+
+Scene 9: Atmospheric wide shot of urban alley in heavy rain: trash bins, fire escape ladder, wet pavement reflecting lights, Jake's silhouette processing the situation
+
+Scene 10: Extreme close-up of Mr. Patterson's trembling hand pressing small black USB drive (with visible red stripe) into Jake's palm, both hands in sharp focus, background blurred
+
+Technical Specifications:
+
+Resolution: High detail suitable for cinematic presentation
+Lighting: Dramatic noir-style with emphasis on rain, emergency lights, and urban night atmosphere
+Camera angles: Varied (wide, medium, close-up, extreme close-up) as specified per scene
+Composition: Cinematic framing with attention to rule of thirds and visual storytelling
+Color palette: Desaturated with emphasis on blues, greys, reds (emergency lights), and warm skin tones
+Rain effects: Visible throughout all 10 scenes with increasing intensity
+Continuity markers: Ensure Jake's hoodie, watch, and phone appearance remain identical; Mr. Patterson's cardigan and wallet maintain consistent details
+Quality Standards:
+
+Each image must be production-ready with professional illustration quality
+Character facial features must remain pixel-perfect consistent across all scenes
+Environmental details (alley texture, lighting, rain) must maintain visual continuity
+Emotional expressions must accurately reflect scene's dramatic tension
+Generate all 10 scenes maintaining absolute visual consistency in character design, art style, and atmospheric mood.
