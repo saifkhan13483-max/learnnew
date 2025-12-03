@@ -1,0 +1,55 @@
+best and power enhanced Prompt formate:
+
+Generate five cinematically composed, photorealistic images for Scenes 21-25 with unwavering visual consistency and artistic excellence.
+
+Critical Requirements:
+
+Character & Visual Continuity:
+
+Jake Rivers: 17-year-old athletic male, 5'9", fair skin with light tan, dark brown messy hair, sharp grey-blue eyes, strong jawline with slight stubble, wearing dark grey hoodie, black jeans, white sneakers, silver watch on left wrist
+Maintain exact character proportions, facial features, clothing details, and physical positioning across all five images
+Apply 2D Semi-Realistic Cartoon Illustration style with detailed shading, expressive eyes, and realistic teenage proportions throughout
+Technical Specifications:
+
+Resolution: High-definition suitable for professional presentation
+Lighting: Consistent warm desk lamp illumination creating dramatic shadows and emotional atmosphere
+Color Palette: Warm amber tones from lamp, cool blue-grey from night window, deep shadows for contrast
+Composition: Cinematic framing that emphasizes Jake's emotional state and key props
+Scene-Specific Instructions:
+
+Scene 21 (scene_21.png):
+Focus on Jake's small black notebook lying open on wooden desk with pen beside it. Desk lamp creates warm glow on notebook pages. Notebook shows handwritten notes. Window with rain streaks visible in background. Emotional tone: contemplative tension.
+
+Scene 22 (scene_22.png):
+Jake's smartphone with distinctive cracked screen sits on nightstand, glowing screen displaying news notification. Emergency lighting ambiance. Close framing emphasizes phone damage and notification urgency. Emotional tone: foreboding danger.
+
+Scene 23 (scene_23.png):
+Medium shot of Jake's trembling hands running through messy dark brown hair. His grey-blue eyes show stress, face partially visible between fingers. Hoodie sleeves visible on forearms. Desk lamp side-lighting creates dramatic facial shadows. Emotional tone: overwhelming anxiety.
+
+Scene 24 (scene_24.png):
+Profile or three-quarter view of Jake seated on bed edge, shoulders rising and falling with deep breaths. Body language shows physical manifestation of stress. Basketball visible on floor, school posters on walls. Rain-streaked window in background. Emotional tone: attempting self-regulation.
+
+Scene 25 (scene_25.png):
+Jake slowly lifting his head to look toward desk where notebook sits. Camera angle captures transition from defeated posture to determined focus. Eyes red from stress but gaining resolve. Desk lamp illuminates notebook in background. Emotional tone: emerging determination.
+
+Mandatory Exclusions:
+
+NO character names as text overlays
+NO dialogue bubbles or caption text
+NO watermarks or artist signatures within image frame
+NO stylistic variations between the five images
+Quality Benchmarks:
+
+Photorealistic rendering quality while maintaining 2D semi-realistic cartoon aesthetic
+Cinematic depth of field with strategic focus points
+Authentic emotional expressions that convey narrative progression
+Professional-grade lighting that enhances mood without overwhelming detail
+Seamless visual flow when images are viewed in sequence
+File Naming Convention:
+Save as: scene_21.png, scene_22.png, scene_23.png, scene_24.png, scene_25.png
+
+Reference Materials:
+Before generation, thoroughly review character specifications in "story_1764692901701" and complete scene descriptions in "scenes_1764692901700" to ensure absolute accuracy in character appearance, setting details, and emotional progression.
+
+Priority Focus:
+Dramatic tension, subtle character expressions, atmospheric lighting, and visual storytelling that communicates Jake's internal struggle without requiring text explanation. Each image should function both independently and as part of the cohesive narrative sequence.
