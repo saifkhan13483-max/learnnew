@@ -1,0 +1,20 @@
+Create a minimal animation of scene_1:
+
+A 17-year-old athletic teen male (Jake Rivers) with dark brown messy hair, grey-blue eyes, fair skin with light tan, wearing a dark grey hoodie, black jeans, and white sneakers. He walks home along a wet urban street on a rainy evening.
+
+Animation elements:
+- Gentle walking cycle: Jake's subtle stride forward (loop every 2 seconds)
+- Rain: Vertical light grey streaks falling continuously with slight diagonal angle
+- Puddle reflections: Subtle shimmer and ripple effects on wet pavement
+- Streetlights: Soft glow with occasional flicker
+- Jake's hoodie: Slight fabric movement from wind
+- Background depth: Parallax effect - buildings move slower than foreground
+
+Style: 2D Semi-Realistic Cartoon Illustration
+Duration: 3-5 second loop
+Frame rate: 24fps
+Movement: Slow, contemplative pace
+Atmosphere: Moody evening with blue-grey color palette, dim lighting
+Camera: Static medium shot following Jake's silhouette
+
+Keep movements subtle and atmospheric - focus on rain, reflections, and Jake's steady walking rhythm to create mood rather than dramatic action.
